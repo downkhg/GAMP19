@@ -1,4 +1,5 @@
 ﻿using System;
+using CSClass;
 
 namespace ObjectCS
 {
@@ -71,6 +72,25 @@ namespace ObjectCS
                 else
                     break;
             }
+        }
+
+        static void PokemonGame()
+        {
+            Trainner trainner = new Trainner();
+            Pokemon picacu = new Pokemon("picacu",100,10);
+            Pokemon ev = new Pokemon("ev", 100, 10);
+
+            trainner.Catch(picacu);
+
+
+            Pokemon battleMonster = trainner.Throw("picacu");
+
+            BattlePoketmon(battleMonster, ev);
+        }
+
+        static void BattlePoketmon(Pokemon monster, Pokemon wild)
+        {
+
         }
     }
 }
