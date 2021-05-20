@@ -137,10 +137,11 @@ namespace BasicCS
         static void BattleMain()
         {
             int nMonsterHP = 100;
-            int nPlayerAtk = 11;
-            int nPlayerHP = 100;
             int nMonsterAtk = 11;
 
+            int nPlayerAtk = 11;
+            int nPlayerHP = 100;
+            
             while (true)
             {
                 //플레이어가 살아있을때만 공격한다.

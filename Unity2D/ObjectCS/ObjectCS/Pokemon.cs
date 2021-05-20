@@ -57,7 +57,7 @@ namespace CSClass
     }
     class Trainner
     {
-        List<Pokemon> pokemons = new List<Pokemon>();
+        public List<Pokemon> pokemons = new List<Pokemon>();
 
         public void Catch(Pokemon target)
         {
@@ -68,6 +68,20 @@ namespace CSClass
         {
             //람다식, 델리게이트
             return pokemons.Find(pokemon => pokemon.Name == name);
+        }
+
+        public Pokemon Throw(int idx)
+        {
+            //람다식, 델리게이트
+            return pokemons[idx];
+        }
+
+        public void ShowPokemons()
+        {
+            for(int i = 0;  i< pokemons.Count; i++)
+            {
+                Console.WriteLine("["+i+"]"+pokemons[i].Name);
+            }
         }
     }
 }
