@@ -7,6 +7,9 @@ public class Dynamic : MonoBehaviour
     public float Speed;
     public float JumpPower;
     public bool isJump = false;
+
+    public int Score = 0;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -22,7 +25,7 @@ public class Dynamic : MonoBehaviour
         if (Input.GetKey(KeyCode.LeftArrow))
             transform.position += Vector3.left * Speed * Time.deltaTime;
         
-        if (Input.GetKeyDown(KeyCode.UpArrow))
+        if (Input.GetKeyDown(KeyCode.Space))
         {
             if (isJump == false)
             {
@@ -37,9 +40,16 @@ public class Dynamic : MonoBehaviour
             transform.position += Vector3.down * Speed * Time.deltaTime;
     }
 
+    private void OnGUI()
+    {
+        GUI.Box(new Rect(0, 0, 100, 20), "Score:" + Score);
+    }
+
     private void OnCollisionEnter2D(Collision2D collision)
     {
         isJump = false;
+        if(collision.gameObject.name == "cherry")
+            Score++;
         Debug.Log("OnCollisionEnter2D:" + collision.gameObject.name);
     }
 
