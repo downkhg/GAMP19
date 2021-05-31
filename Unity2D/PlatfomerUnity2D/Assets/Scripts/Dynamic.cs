@@ -54,6 +54,31 @@ public class Dynamic : MonoBehaviour
     //        Destroy(collision.gameObject);
     //    }
     //}
+    //트리거스테이는 매프레임마다 발생하지않으므로 주의해서 사용할것!
+    private void OnTriggerStay2D(Collider2D collision)
+    {
+        if(collision.gameObject.name == "Ladder")
+        {
+            if (Input.GetKey(KeyCode.UpArrow))
+                transform.position += Vector3.up * Speed * Time.deltaTime;
+            if (Input.GetKey(KeyCode.DownArrow))
+                transform.position += Vector3.down * Speed * Time.deltaTime;
+            Rigidbody2D rigidbody = GetComponent<Rigidbody2D>();
+            rigidbody.gravityScale = 0;
+            rigidbody.velocity = Vector2.zero;
+        }
+        Debug.Log("OnTriggerStay2D:" + collision.gameObject.name);
+    }
+    private void OnTriggerExit2D(Collider2D collision)
+    {
+        if (collision.gameObject.name == "Ladder")
+        {
+            Rigidbody2D rigidbody = GetComponent<Rigidbody2D>();
+            rigidbody.gravityScale = 1;
+            rigidbody.velocity = Vector2.zero;
+        }
+        Debug.Log("OnTriggerExit2D:" + collision.gameObject.name);
+    }
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
