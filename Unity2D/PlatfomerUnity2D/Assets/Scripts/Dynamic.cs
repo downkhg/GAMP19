@@ -7,6 +7,7 @@ public class Dynamic : MonoBehaviour
     public float Speed;
     public float JumpPower;
     public bool isJump = false;
+    public bool isLadder = false;
 
     public int Score = 0;
 
@@ -35,6 +36,14 @@ public class Dynamic : MonoBehaviour
                 //transform.position += Vector3.up * JumpPower * Time.deltaTime;
             }
         }
+
+        if(isLadder)
+        {
+            if (Input.GetKey(KeyCode.UpArrow))
+                transform.position += Vector3.up * Speed * Time.deltaTime;
+            if (Input.GetKey(KeyCode.DownArrow))
+                transform.position += Vector3.down * Speed * Time.deltaTime;
+        }
         
         if (Input.GetKey(KeyCode.DownArrow))
             transform.position += Vector3.down * Speed * Time.deltaTime;
@@ -55,19 +64,31 @@ public class Dynamic : MonoBehaviour
     //    }
     //}
     //트리거스테이는 매프레임마다 발생하지않으므로 주의해서 사용할것!
-    private void OnTriggerStay2D(Collider2D collision)
+    //private void OnTriggerStay2D(Collider2D collision)
+    //{
+    //    if(collision.gameObject.name == "Ladder")
+    //    {
+            
+    //        Rigidbody2D rigidbody = GetComponent<Rigidbody2D>();
+    //        rigidbody.gravityScale = 0;
+    //        rigidbody.velocity = Vector2.zero;
+    //    }
+    //    Debug.Log("OnTriggerStay2D:" + collision.gameObject.name);
+    //}
+
+    private void OnTriggerEnter2D(Collider2D collision)
     {
-        if(collision.gameObject.name == "Ladder")
+        if (isJump == false)
         {
-            if (Input.GetKey(KeyCode.UpArrow))
-                transform.position += Vector3.up * Speed * Time.deltaTime;
-            if (Input.GetKey(KeyCode.DownArrow))
-                transform.position += Vector3.down * Speed * Time.deltaTime;
-            Rigidbody2D rigidbody = GetComponent<Rigidbody2D>();
-            rigidbody.gravityScale = 0;
-            rigidbody.velocity = Vector2.zero;
+            if (collision.gameObject.name == "Ladder")
+            {
+                Rigidbody2D rigidbody = GetComponent<Rigidbody2D>();
+                rigidbody.gravityScale = 0;
+                rigidbody.velocity = Vector2.zero;
+                isLadder = true;
+            }
         }
-        Debug.Log("OnTriggerStay2D:" + collision.gameObject.name);
+        Debug.Log("OnTriggerExit2D:" + collision.gameObject.name);
     }
     private void OnTriggerExit2D(Collider2D collision)
     {
@@ -76,6 +97,7 @@ public class Dynamic : MonoBehaviour
             Rigidbody2D rigidbody = GetComponent<Rigidbody2D>();
             rigidbody.gravityScale = 1;
             rigidbody.velocity = Vector2.zero;
+            isLadder = false;
         }
         Debug.Log("OnTriggerExit2D:" + collision.gameObject.name);
     }
