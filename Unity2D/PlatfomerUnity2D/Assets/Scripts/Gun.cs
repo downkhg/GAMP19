@@ -6,6 +6,7 @@ public class Gun : MonoBehaviour
 {
     public GameObject objBullet;
     public float ShotPower;
+    public float Range;
 
     public void Shot()
     {
@@ -13,6 +14,8 @@ public class Gun : MonoBehaviour
         copyBullet.transform.position = this.transform.position;
         Rigidbody2D rigidbody = copyBullet.GetComponent <Rigidbody2D>();
         rigidbody.AddForce(Vector3.right * ShotPower);
+        Bullet bullet = copyBullet.GetComponent<Bullet>();
+        bullet.gun = this;
     }
 
     // Start is called before the first frame update

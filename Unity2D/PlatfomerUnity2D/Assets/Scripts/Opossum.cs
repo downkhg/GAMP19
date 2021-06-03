@@ -15,7 +15,7 @@ public class Opossum : MonoBehaviour
     void Update()
     {
         //if (Input.GetKey(KeyCode.LeftArrow))
-            transform.position += Vector3.left * Speed * Time.deltaTime;
+        transform.position += Vector3.left * Speed * Time.deltaTime;
     }
 
     private void OnCollisionEnter2D(Collision2D collision)
