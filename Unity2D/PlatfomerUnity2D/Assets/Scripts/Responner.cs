@@ -6,23 +6,35 @@ public class Responner : MonoBehaviour
 {
     public GameObject objPlayer;
     public string strPrefabName;
+    public bool isRespon = false;
 
     // Start is called before the first frame update
     void Start()
     {
         strPrefabName = objPlayer.name;
+        Debug.Log("Responner::Start:" + gameObject.name);
     }
 
     // Update is called once per frame
     void Update()
     {
-        if(objPlayer == null)
+        //Debug.Log("Update::Update:" + gameObject.name);
+        if (objPlayer == null && isRespon == false)
         {
-            //에셋폴더에서 프리팹읽어보기
-            GameObject prefab =
-                Resources.Load("Prefabs/" + strPrefabName) as GameObject;
-            //읽은 프래팹을 복제
-            Instantiate(prefab);
+            StartCoroutine(ProcessTimmer());
         }
+    }
+
+    IEnumerator ProcessTimmer()
+    {
+        Debug.Log("ProcessTimmer Start!");
+        isRespon = true;
+        //에셋폴더에서 프리팹읽어보기
+        GameObject prefabObject =  Resources.Load("Prefabs/" + strPrefabName) as GameObject;
+        yield return new WaitForSeconds(1);
+        objPlayer = Instantiate(prefabObject);
+        objPlayer.transform.position = this.gameObject.transform.position;
+        isRespon = false;
+        Debug.Log("ProcessTimmer End!");
     }
 }

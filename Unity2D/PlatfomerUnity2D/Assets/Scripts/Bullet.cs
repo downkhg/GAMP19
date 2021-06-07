@@ -18,6 +18,8 @@ public class Bullet : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if (gun == null) return;
+
         Vector3 vCurPos = this.transform.position;
         Vector3 vDist = vCurPos - vStartPos; //두벡터의 차를 구해 방향이있는 벡터를 구함.
         //float fDist = vDist.magnitude; //벡터의 스칼라(순수이동량)을 구한다.

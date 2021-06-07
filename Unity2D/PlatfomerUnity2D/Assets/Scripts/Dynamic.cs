@@ -88,7 +88,7 @@ public class Dynamic : MonoBehaviour
                 isLadder = true;
             }
         }
-        Debug.Log("OnTriggerExit2D:" + collision.gameObject.name);
+        //Debug.Log("OnTriggerExit2D:" + collision.gameObject.name);
     }
     private void OnTriggerExit2D(Collider2D collision)
     {
@@ -99,19 +99,19 @@ public class Dynamic : MonoBehaviour
             rigidbody.velocity = Vector2.zero;
             isLadder = false;
         }
-        Debug.Log("OnTriggerExit2D:" + collision.gameObject.name);
+        //Debug.Log("OnTriggerExit2D:" + collision.gameObject.name);
     }
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
         isJump = false;
       
-        Debug.Log("OnCollisionEnter2D:" + collision.gameObject.name);
+        //Debug.Log("OnCollisionEnter2D:" + collision.gameObject.name);
     }
 
     private void OnCollisionExit2D(Collision2D collision)
     {
         //isJump = true; //땅에서 나갔다고 해서 점프인가?
-        Debug.Log("OnCollisionExit2D:" + collision.gameObject.name);
+        //Debug.Log("OnCollisionExit2D:" + collision.gameObject.name);
     }
 }
