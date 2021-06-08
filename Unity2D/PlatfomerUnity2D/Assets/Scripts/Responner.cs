@@ -6,8 +6,10 @@ public class Responner : MonoBehaviour
 {
     public GameObject objPlayer;
     public string strPrefabName;
-    public bool isRespon = false;
+    public float Time = 1;
 
+    public bool isRespon = false;
+   
     // Start is called before the first frame update
     void Start()
     {
@@ -31,7 +33,7 @@ public class Responner : MonoBehaviour
         isRespon = true;
         //에셋폴더에서 프리팹읽어보기
         GameObject prefabObject =  Resources.Load("Prefabs/" + strPrefabName) as GameObject;
-        yield return new WaitForSeconds(1);
+        yield return new WaitForSeconds(Time);
         objPlayer = Instantiate(prefabObject);
         objPlayer.transform.position = this.gameObject.transform.position;
         isRespon = false;
