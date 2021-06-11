@@ -11,33 +11,37 @@ public class Eagle : MonoBehaviour
 
     private void FixedUpdate()
     {
-        int nLayer = 1 << LayerMask.NameToLayer("Player");
+        ProcessFindTarget("Player");
+        //ProcessFindTargetAll();
+    }
+    void ProcessFindTarget(string layername)
+    {
+        int nLayer = 1 << LayerMask.NameToLayer(layername);
         Collider2D collider = Physics2D.OverlapCircle(transform.position, Site, nLayer);
         //Collider2D collider = Physics2D.OverlapCircle(transform.position, Site);//, nLayer);
         if (collider)
         {
-             objTarget = collider.gameObject;
+            objTarget = collider.gameObject;
         }
     }
-
-    //private void FixedUpdate()
-    //{
-    //    Collider2D[] colliders = Physics2D.OverlapCircleAll(transform.position, Site);
-    //    if (colliders.Length > 0)
-    //    {
-    //        for (int i = 0; i < colliders.Length; i++)
-    //        {
-    //            Collider2D collider = colliders[i];
-    //            if (collider.tag == "Player")
-    //            {
-    //                objTarget = collider.gameObject;
-    //                break;
-    //            }
-    //            else
-    //                Debug.Log("Collider:" + collider.name);
-    //        }
-    //    }
-    //}
+    void ProcessFindTargetAll()
+    {
+        Collider2D[] colliders = Physics2D.OverlapCircleAll(transform.position, Site);
+        if (colliders.Length > 0)
+        {
+            for (int i = 0; i < colliders.Length; i++)
+            {
+                Collider2D collider = colliders[i];
+                if (collider.tag == "Player")
+                {
+                    objTarget = collider.gameObject;
+                    break;
+                }
+                else
+                    Debug.Log("Collider:" + collider.name);
+            }
+        }
+    }
 
     private void OnDrawGizmos()
     {
@@ -65,5 +69,9 @@ public class Eagle : MonoBehaviour
             if (fDist > Speed * Time.deltaTime)
                 transform.position += vDir * Speed * Time.deltaTime;
         }
+    }
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        Destroy(collision.gameObject);
     }
 }
