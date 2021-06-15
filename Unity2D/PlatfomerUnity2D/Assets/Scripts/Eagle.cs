@@ -9,6 +9,8 @@ public class Eagle : MonoBehaviour
 
     public float Site = 0.5f;
 
+    public GameObject objResponPoint;
+
     private void FixedUpdate()
     {
         ProcessFindTarget("Player");
@@ -69,6 +71,8 @@ public class Eagle : MonoBehaviour
             if (fDist > Speed * Time.deltaTime)
                 transform.position += vDir * Speed * Time.deltaTime;
         }
+        else
+            objTarget = objResponPoint;
     }
     private void OnTriggerEnter2D(Collider2D collision)
     {
