@@ -14,6 +14,43 @@ public class Eagle : MonoBehaviour
 
     public bool isMove = false;
 
+
+    public enum E_AI_STATE { NONE = -1, ATTACK, RETRUN, POTROL }
+    public E_AI_STATE eAIState;
+    public void SetAIState(E_AI_STATE state)
+    {
+        Debug.Log("SetAIState:" + state);
+        switch(state)
+        {
+            case E_AI_STATE.ATTACK:
+                break;
+            case E_AI_STATE.RETRUN:
+                objTarget = objResponPoint;
+                break;
+            case E_AI_STATE.POTROL:
+                break;
+        }
+        eAIState = state;
+    }
+
+    public void UpdateState()
+    {
+        switch (eAIState)
+        {
+            case E_AI_STATE.ATTACK:
+                if (!objTarget)
+                    SetAIState(E_AI_STATE.RETRUN);
+                break;
+            case E_AI_STATE.RETRUN:
+                if (isMove == false)
+                    SetAIState(E_AI_STATE.POTROL);
+                break;
+            case E_AI_STATE.POTROL:
+                ProcessPatrol(objResponPoint, objPatrolPoint);
+                break;
+        }
+    }
+
     private void FixedUpdate()
     {
         ProcessFindTarget("Player");
@@ -27,6 +64,7 @@ public class Eagle : MonoBehaviour
         if (collider)
         {
             objTarget = collider.gameObject;
+            SetAIState(E_AI_STATE.ATTACK);
         }
     }
     void ProcessFindTargetAll()
@@ -64,14 +102,7 @@ public class Eagle : MonoBehaviour
     {
         bool bCheckTarget = ProcessMoveTarget();
 
-        if (bCheckTarget)
-        {
-            //-A에서 출발하여 B에(도착:???)하면, 타겟을 A로 만든다.
-            //-B에서 출발하여 A에 도착하면, 타겟을 B로 만든다.
-            ProcessPatrol(objResponPoint, objPatrolPoint);
-        }
-        else
-            objTarget = objResponPoint;
+        UpdateState();
     }
 
     bool ProcessMoveTarget()//타겟이 없다면 false를 반환한다.
