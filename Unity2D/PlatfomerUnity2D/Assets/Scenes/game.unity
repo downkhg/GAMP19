@@ -2118,6 +2118,7 @@ MonoBehaviour:
   trackerCamera: {fileID: 148448322}
   responnerPlayer: {fileID: 474974130}
   responnerEagle: {fileID: 1609517534}
+  responnerOpossum: {fileID: 140249367}
 --- !u!4 &943134153
 Transform:
   m_ObjectHideFlags: 0
@@ -3076,6 +3077,11 @@ PrefabInstance:
       propertyPath: objResponPoint
       value: 
       objectReference: {fileID: 1609517533}
+    - target: {fileID: 7666515663648939744, guid: c215c82bf6ec7c04e94dd50c7e9a0528,
+        type: 3}
+      propertyPath: objPatrolPoint
+      value: 
+      objectReference: {fileID: 140249366}
     - target: {fileID: 7666515663648939773, guid: c215c82bf6ec7c04e94dd50c7e9a0528,
         type: 3}
       propertyPath: m_Name

@@ -12,10 +12,10 @@ public class TrackerCamera : MonoBehaviour
     {
         if (objTarget != null)
         {
-            Vector3 vPos = this.transform.position;
+            Vector3 vCamPos = this.transform.position;
             Vector3 vTargetPos = objTarget.transform.position;
-            vTargetPos.z = vPos.z;
-            Vector3 vDist = vTargetPos - vPos;
+            vTargetPos.z = vCamPos.z;
+            Vector3 vDist = vTargetPos - vCamPos;
             Vector3 vDir = vDist.normalized;
             float fDist = vDist.magnitude;
 
