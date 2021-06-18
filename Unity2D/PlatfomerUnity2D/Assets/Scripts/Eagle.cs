@@ -15,14 +15,14 @@ public class Eagle : MonoBehaviour
     public bool isMove = false;
 
 
-    public enum E_AI_STATE { NONE = -1, ATTACK, RETRUN, POTROL }
+    public enum E_AI_STATE { NONE = -1, TRACKING, RETRUN, POTROL }
     public E_AI_STATE eAIState;
     public void SetAIState(E_AI_STATE state)
     {
         Debug.Log("SetAIState:" + state);
         switch(state)
         {
-            case E_AI_STATE.ATTACK:
+            case E_AI_STATE.TRACKING:
                 break;
             case E_AI_STATE.RETRUN:
                 objTarget = objResponPoint;
@@ -37,7 +37,7 @@ public class Eagle : MonoBehaviour
     {
         switch (eAIState)
         {
-            case E_AI_STATE.ATTACK:
+            case E_AI_STATE.TRACKING:
                 if (!objTarget)
                     SetAIState(E_AI_STATE.RETRUN);
                 break;
@@ -64,7 +64,7 @@ public class Eagle : MonoBehaviour
         if (collider)
         {
             objTarget = collider.gameObject;
-            SetAIState(E_AI_STATE.ATTACK);
+            SetAIState(E_AI_STATE.TRACKING);
         }
     }
     void ProcessFindTargetAll()
@@ -100,8 +100,7 @@ public class Eagle : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        bool bCheckTarget = ProcessMoveTarget();
-
+        ProcessMoveTarget();
         UpdateState();
     }
 
@@ -131,15 +130,16 @@ public class Eagle : MonoBehaviour
 
     void ProcessPatrol(GameObject objA, GameObject objB)
     {
-        if(objA.name == objTarget.name)
+        if (isMove == false)
         {
-            if (isMove == false)
+            if (objA.name == objTarget.name)
+            {
                 objTarget = objB;
-        }
-        else if (objB.name == objTarget.name)
-        {
-            if (isMove == false)
+            }
+            else if (objB.name == objTarget.name)
+            {
                 objTarget = objA;
+            }
         }
     }
 

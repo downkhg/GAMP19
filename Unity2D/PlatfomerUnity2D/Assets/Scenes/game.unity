@@ -2086,6 +2086,18 @@ PlatformEffector2D:
   m_UseSideFriction: 0
   m_UseSideBounce: 0
   m_SideArc: 1
+--- !u!114 &742538514 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 2081330456556530731, guid: 6ee9b6517ef4013469474aee3d6f3e8b,
+    type: 3}
+  m_PrefabInstance: {fileID: 2081330456394619226}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d7f9de4730d909b468f41f549ac52ac9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &943134151
 GameObject:
   m_ObjectHideFlags: 0
@@ -2998,6 +3010,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 2081330456015469056, guid: 6ee9b6517ef4013469474aee3d6f3e8b,
+        type: 3}
+      propertyPath: gun
+      value: 
+      objectReference: {fileID: 742538514}
     - target: {fileID: 2081330456015469059, guid: 6ee9b6517ef4013469474aee3d6f3e8b,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -3052,6 +3069,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2081330456015469059, guid: 6ee9b6517ef4013469474aee3d6f3e8b,
+        type: 3}
+      propertyPath: m_LocalScale.x
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 2081330456015469069, guid: 6ee9b6517ef4013469474aee3d6f3e8b,
         type: 3}

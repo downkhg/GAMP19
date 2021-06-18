@@ -11,6 +11,10 @@ public class Dynamic : MonoBehaviour
 
     public int Score = 0;
 
+    public Gun gun;
+
+    public Vector3 dir;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -20,11 +24,24 @@ public class Dynamic : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if (Input.GetKeyDown(KeyCode.Z))
+            gun.Shot(dir);
+
         //왼쪽, 위,아래 모두 추가하기
         if (Input.GetKey(KeyCode.RightArrow))
+        {
+            //transform.Rotate(Vector3.up * 180);
+            transform.localRotation = Quaternion.Euler(Vector3.zero);
             transform.position += Vector3.right * Speed * Time.deltaTime;
+            dir = Vector3.right;
+        }
         if (Input.GetKey(KeyCode.LeftArrow))
+        {
+            //transform.Rotate(Vector3.up * 180);
+            transform.localRotation = Quaternion.Euler(Vector3.up * 180);
             transform.position += Vector3.left * Speed * Time.deltaTime;
+            dir = Vector3.left;
+        }
         
         if (Input.GetKeyDown(KeyCode.Space))
         {

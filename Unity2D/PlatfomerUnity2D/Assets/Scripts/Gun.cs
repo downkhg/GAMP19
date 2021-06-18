@@ -8,12 +8,12 @@ public class Gun : MonoBehaviour
     public float ShotPower;
     public float Range;
 
-    public void Shot()
+    public void Shot(Vector3 dir)
     {
         GameObject copyBullet = Instantiate(objBullet);
         copyBullet.transform.position = this.transform.position;
         Rigidbody2D rigidbody = copyBullet.GetComponent <Rigidbody2D>();
-        rigidbody.AddForce(Vector3.right * ShotPower);
+        rigidbody.AddForce(dir * ShotPower);
         Bullet bullet = copyBullet.GetComponent<Bullet>();
         bullet.gun = this;
     }
@@ -27,7 +27,6 @@ public class Gun : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Z))
-            Shot();
+      
     }
 }
