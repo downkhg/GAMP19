@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 2081330456015469056}
   - component: {fileID: 2081330456015469057}
   - component: {fileID: 2081330456015469062}
+  - component: {fileID: 5932705243867581847}
   m_Layer: 8
   m_Name: player
   m_TagString: Player
@@ -102,6 +103,8 @@ MonoBehaviour:
   isJump: 0
   isLadder: 0
   Score: 0
+  gun: {fileID: 0}
+  dir: {x: 0, y: 0, z: 0}
 --- !u!50 &2081330456015469057
 Rigidbody2D:
   serializedVersion: 4
@@ -139,6 +142,24 @@ CapsuleCollider2D:
   m_Offset: {x: -0.010314763, y: -0.045385182}
   m_Size: {x: 0.18146718, y: 0.23097813}
   m_Direction: 0
+--- !u!114 &5932705243867581847
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2081330456015469069}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a4e7d932477928245bf0449ecf51a269, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  HP: 100
+  Atk: 10
+  MP: 100
+  Lv: 10
+  Exp: 0
+  idxDegugGUI: 1
 --- !u!1 &2081330456556530730
 GameObject:
   m_ObjectHideFlags: 0
