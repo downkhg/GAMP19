@@ -11,6 +11,19 @@ public class Player : MonoBehaviour
     public int Lv = 10;
     public int Exp = 0;
 
+    public void Attack(Player target)
+    {
+        target.HP -= Atk;
+    }
+
+    public bool Death()
+    {
+        if (HP > 0)
+            return false;
+        else
+            return true;
+    }
+
     public int idxDegugGUI = 0;
     private void OnGUI()
     {

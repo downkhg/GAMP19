@@ -3015,6 +3015,16 @@ PrefabInstance:
       propertyPath: gun
       value: 
       objectReference: {fileID: 742538514}
+    - target: {fileID: 2081330456015469057, guid: 6ee9b6517ef4013469474aee3d6f3e8b,
+        type: 3}
+      propertyPath: m_Simulated
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2081330456015469058, guid: 6ee9b6517ef4013469474aee3d6f3e8b,
+        type: 3}
+      propertyPath: m_Color.a
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 2081330456015469059, guid: 6ee9b6517ef4013469474aee3d6f3e8b,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -3074,6 +3084,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalScale.x
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2081330456015469062, guid: 6ee9b6517ef4013469474aee3d6f3e8b,
+        type: 3}
+      propertyPath: m_IsTrigger
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2081330456015469069, guid: 6ee9b6517ef4013469474aee3d6f3e8b,
         type: 3}
