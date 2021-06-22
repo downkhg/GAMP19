@@ -25,7 +25,7 @@ public class Dynamic : MonoBehaviour
     void Update()
     {
         if (Input.GetKeyDown(KeyCode.Z))
-            gun.Shot(dir);
+            gun.Shot(dir,GetComponent<Player>());
 
         //왼쪽, 위,아래 모두 추가하기
         if (Input.GetKey(KeyCode.RightArrow))

@@ -6,6 +6,7 @@ public class Bullet : MonoBehaviour
 {
     public Gun gun;
     Vector3 vStartPos;
+    public Player master;
     // Start is called before the first frame update
     void Start()
     {
@@ -34,6 +35,16 @@ public class Bullet : MonoBehaviour
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if(collision.gameObject.tag == "Monster")
-            Destroy(collision.gameObject);
+        {
+            Player monster = collision.gameObject.GetComponent<Player>();
+            Player player = master;
+
+            SuperMode superMode = monster.GetComponent<SuperMode>();
+            if (superMode != null && superMode.isOn == false)
+            {
+                player.Attack(monster);
+                superMode.SetMode();
+            }
+        }
     }
 }

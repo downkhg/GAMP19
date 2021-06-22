@@ -4,8 +4,8 @@ using UnityEngine;
 
 public class SuperMode : MonoBehaviour
 {
-    public float Time;
-    public bool isOn;
+    public float Time = 1;
+    public bool isOn = true;
     // Start is called before the first frame update
     void Start()
     {

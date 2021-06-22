@@ -14,6 +14,7 @@ GameObject:
   - component: {fileID: 7934322964357957574}
   - component: {fileID: 7934322964357957575}
   - component: {fileID: 9105186800344402508}
+  - component: {fileID: -7841723052745187808}
   m_Layer: 9
   m_Name: opossum
   m_TagString: Monster
@@ -163,3 +164,17 @@ MonoBehaviour:
   Lv: 10
   Exp: 0
   idxDegugGUI: 2
+--- !u!114 &-7841723052745187808
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7934322964357957571}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 92cc5c9c5862f034aaecb7ed03304cfe, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Time: 1
+  isOn: 1

@@ -8,7 +8,7 @@ public class Gun : MonoBehaviour
     public float ShotPower;
     public float Range;
 
-    public void Shot(Vector3 dir)
+    public void Shot(Vector3 dir, Player player)
     {
         GameObject copyBullet = Instantiate(objBullet);
         copyBullet.transform.position = this.transform.position;
@@ -16,6 +16,7 @@ public class Gun : MonoBehaviour
         rigidbody.AddForce(dir * ShotPower);
         Bullet bullet = copyBullet.GetComponent<Bullet>();
         bullet.gun = this;
+        bullet.master = player;
     }
 
     // Start is called before the first frame update

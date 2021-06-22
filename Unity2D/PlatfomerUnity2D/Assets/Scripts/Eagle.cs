@@ -55,6 +55,22 @@ public class Eagle : MonoBehaviour
     {
         ProcessFindTarget("Player");
         //ProcessFindTargetAll();
+
+        CircleCollider2D circle = GetComponent<CircleCollider2D>();
+        Collider2D collider = 
+            Physics2D.OverlapCircle(this.transform.position, circle.radius, 1<<LayerMask.NameToLayer("Player"));
+        if(collider)
+        {
+            Player monster = this.GetComponent<Player>();
+            Player player = collider.gameObject.GetComponent<Player>();
+
+            SuperMode superMode = player.GetComponent<SuperMode>();
+            if (superMode != null && superMode.isOn == false)
+            {
+                monster.Attack(player);
+                superMode.SetMode();
+            }
+        }
     }
     void ProcessFindTarget(string layername)
     {
