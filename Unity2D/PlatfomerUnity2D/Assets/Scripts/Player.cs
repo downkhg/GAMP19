@@ -8,12 +8,14 @@ public class Player : MonoBehaviour
     public int Atk = 10;
     public int MP = 100;
 
-    public int Lv = 10;
+    public int Lv = 1;
     public int Exp = 0;
 
     public void Attack(Player target)
     {
         target.HP -= Atk;
+        if (target.Death())
+            StillExp(target);
     }
 
     public bool Death()
@@ -22,6 +24,23 @@ public class Player : MonoBehaviour
             return false;
         else
             return true;
+    }
+
+    public void LvUp()
+    {
+        if(Exp >= 100)
+        {
+            Lv++;
+            Atk += 5;
+            HP += 5;
+            MP += 5;
+            Exp -= 100;
+        }
+    }
+
+    public void StillExp(Player target)
+    {
+        Exp += target.Exp + target.Lv * 100;
     }
 
     public int idxDegugGUI = 0;
@@ -46,6 +65,8 @@ public class Player : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+        if (Death()) 
+            Destroy(this.gameObject);
+        LvUp();
     }
 }

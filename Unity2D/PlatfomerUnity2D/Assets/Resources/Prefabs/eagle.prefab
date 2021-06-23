@@ -132,10 +132,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a4e7d932477928245bf0449ecf51a269, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  HP: 100
-  Atk: 10
+  HP: 50
+  Atk: 20
   MP: 100
-  Lv: 10
+  Lv: 1
   Exp: 0
   idxDegugGUI: 3
 --- !u!114 &-8948760244484884817

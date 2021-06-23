@@ -104,7 +104,7 @@ MonoBehaviour:
   isJump: 0
   isLadder: 0
   Score: 0
-  gun: {fileID: 0}
+  gun: {fileID: 2081330456556530731}
   dir: {x: 0, y: 0, z: 0}
 --- !u!50 &2081330456015469057
 Rigidbody2D:
@@ -158,7 +158,7 @@ MonoBehaviour:
   HP: 100
   Atk: 10
   MP: 100
-  Lv: 10
+  Lv: 1
   Exp: 0
   idxDegugGUI: 1
 --- !u!114 &2853772658916126402
