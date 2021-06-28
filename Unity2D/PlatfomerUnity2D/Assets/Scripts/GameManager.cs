@@ -5,6 +5,7 @@ using UnityEngine;
 public class GameManager : MonoBehaviour
 {
     public TrackerCamera trackerCamera;
+
     public Responner responnerPlayer;
     public Responner responnerEagle;
     public Responner responnerOpossum;
