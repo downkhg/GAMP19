@@ -6,11 +6,17 @@ public class DeathZone : MonoBehaviour
 {
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        Destroy(collision.gameObject);
+        GameObject obj = collision.gameObject;
+        if (obj.GetComponent<Dynamic>())
+            GameManager.GetInstance().Life--;
+        Destroy(obj);
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        Destroy(collision.gameObject);
+        GameObject obj = collision.gameObject;
+        if (obj.tag == "Player")
+            GameManager.GetInstance().Life--;
+        Destroy(obj);
     }
 }

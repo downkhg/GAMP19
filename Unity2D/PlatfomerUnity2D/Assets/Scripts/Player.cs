@@ -15,7 +15,10 @@ public class Player : MonoBehaviour
     {
         target.HP -= Atk;
         if (target.Death())
+        {
             StillExp(target);
+            GameManager.GetInstance().objKillMonster = this.gameObject;
+        }
     }
 
     public bool Death()
@@ -65,8 +68,11 @@ public class Player : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Death()) 
+        if (Death())
+        {
             Destroy(this.gameObject);
+            GameManager.GetInstance().Life--;
+        }
         LvUp();
     }
 }
