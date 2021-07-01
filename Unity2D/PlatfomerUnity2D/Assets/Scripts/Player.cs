@@ -8,6 +8,9 @@ public class Player : MonoBehaviour
     public int Atk = 10;
     public int MP = 100;
 
+    public int MaxHP;
+    public int MaxMP;
+
     public int Lv = 1;
     public int Exp = 0;
 
@@ -37,6 +40,8 @@ public class Player : MonoBehaviour
             Atk += 5;
             HP += 5;
             MP += 5;
+            MaxHP += 5;
+            MaxMP += 5;
             Exp -= 100;
         }
     }
@@ -62,7 +67,8 @@ public class Player : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        
+        MaxHP = HP;
+        MaxMP = MP;
     }
 
     // Update is called once per frame

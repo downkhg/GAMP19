@@ -52,8 +52,11 @@ public class GameManager : MonoBehaviour
                 Time.timeScale = 0;
                 break;
             case E_GUISCENCE_STATE.GAMEOVER:
-                imgKillMonster.sprite = 
-                    objKillMonster.GetComponent<SpriteRenderer>().sprite;
+                if (objKillMonster)
+                {
+                    imgKillMonster.sprite =
+                        objKillMonster.GetComponent<SpriteRenderer>().sprite;
+                }
                 Time.timeScale = 0;
                 break;
             case E_GUISCENCE_STATE.PLAY:
@@ -75,14 +78,22 @@ public class GameManager : MonoBehaviour
             case E_GUISCENCE_STATE.GAMEOVER:
                 break;
             case E_GUISCENCE_STATE.PLAY:
-                if (Life <= 0)
-                    SetScence(E_GUISCENCE_STATE.GAMEOVER);
+                {
+                    if (Life <= 0)
+                        SetScence(E_GUISCENCE_STATE.GAMEOVER);
+                    if (responnerPlayer.objPlayer)
+                    {
+                        Player player = responnerPlayer.objPlayer.GetComponent<Player>();
+                        guiPlayerHPBar.SetState(player.HP, player.MaxHP);
+                    }
+                }
                 break;
         }
     }
 
     public GameObject objKillMonster;
     public Image imgKillMonster;
+    public GUIStateBar guiPlayerHPBar;
 
     private void Start()
     {

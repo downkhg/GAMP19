@@ -8,6 +8,7 @@ public class Dynamic : MonoBehaviour
     public float JumpPower;
     public bool isJump = false;
     public bool isLadder = false;
+    public bool isHouse = false;
 
     public int Score = 0;
 
@@ -45,12 +46,19 @@ public class Dynamic : MonoBehaviour
         
         if (Input.GetKeyDown(KeyCode.Space))
         {
-            if (isJump == false)
+            if (isHouse)
             {
-                Rigidbody2D rigidbody = GetComponent<Rigidbody2D>();
-                rigidbody.AddForce(Vector3.up * JumpPower);
-                isJump = true;
-                //transform.position += Vector3.up * JumpPower * Time.deltaTime;
+                GameManager.GetInstance().SetScence(GameManager.E_GUISCENCE_STATE.THEEND);
+            }
+            else
+            {
+                if (isJump == false)
+                {
+                    Rigidbody2D rigidbody = GetComponent<Rigidbody2D>();
+                    rigidbody.AddForce(Vector3.up * JumpPower);
+                    isJump = true;
+                    //transform.position += Vector3.up * JumpPower * Time.deltaTime;
+                }
             }
         }
 
@@ -105,6 +113,11 @@ public class Dynamic : MonoBehaviour
                 isLadder = true;
             }
         }
+
+        if(collision.gameObject.name == "house")
+        {
+            isHouse = true;
+        }
         //Debug.Log("OnTriggerExit2D:" + collision.gameObject.name);
     }
     private void OnTriggerExit2D(Collider2D collision)
@@ -117,6 +130,10 @@ public class Dynamic : MonoBehaviour
             isLadder = false;
         }
         //Debug.Log("OnTriggerExit2D:" + collision.gameObject.name);
+        if (collision.gameObject.name == "house")
+        {
+            isHouse = false;
+        }
     }
 
     private void OnCollisionEnter2D(Collision2D collision)
