@@ -99,6 +99,8 @@ public class GameManager : MonoBehaviour
     {
         instance = this;
         SetScence(curGUIScene);
+
+        guiPlayerHPBar.Init();
     }
     // Update is called once per frame
     void Update()

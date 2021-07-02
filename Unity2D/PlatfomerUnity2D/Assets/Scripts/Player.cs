@@ -51,7 +51,14 @@ public class Player : MonoBehaviour
         Exp += target.Exp + target.Lv * 100;
     }
 
+    public GUIStateBar guiHPBar;
     public int idxDegugGUI = 0;
+
+    public void UpdateStateBar()
+    {
+        if (guiHPBar) guiHPBar.SetState(HP, MaxHP);
+    }
+
     private void OnGUI()
     {
         int nWidth = 100;
@@ -69,11 +76,13 @@ public class Player : MonoBehaviour
     {
         MaxHP = HP;
         MaxMP = MP;
+        if (guiHPBar) guiHPBar.Init();
     }
 
     // Update is called once per frame
     void Update()
     {
+        UpdateStateBar();
         if (Death())
         {
             Destroy(this.gameObject);
