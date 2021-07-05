@@ -39,6 +39,8 @@ public class MonsterManager : MonoBehaviour
             new MonsterInfo("eagle", "eagle", 50, 20, 20, 100),
             new MonsterInfo("frog", "frog", 100, 20, 10, 200)
         }; 
+
+
         listMonsterInfos = new Dictionary<string, MonsterInfo>(monsterInfos.Length);
         foreach(MonsterInfo monster in monsterInfos)
         {
