@@ -95,6 +95,30 @@ public class GameManager : MonoBehaviour
     public Image imgKillMonster;
     public GUIStateBar guiPlayerHPBar;
 
+    public List<string> listMonsterPedia;
+
+    public void SetPedia(string name)
+    {
+        listMonsterPedia.Add(name);
+    }
+
+    public void GetPedia(string name)
+    {
+        listMonsterPedia.Find(x => x == name);
+    }
+
+    private void OnGUI()
+    {
+        int w = 100;
+        int h = 20;
+
+        //foreach(string item  in listMonsterPedia)
+        for(int i = 0; i < listMonsterPedia.Count; i++)
+        {
+            GUI.Box(new Rect(0, h * i, w, h), listMonsterPedia[i]);
+        }
+    }
+
     private void Start()
     {
         instance = this;

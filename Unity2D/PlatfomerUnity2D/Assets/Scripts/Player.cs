@@ -14,6 +14,13 @@ public class Player : MonoBehaviour
     public int Lv = 1;
     public int Exp = 0;
 
+    public Player(int _hp, int _mp, int _atk,int _exp)
+    {
+        MaxHP =  HP = _hp;
+        MaxMP = MP = _mp;
+        Atk = _atk;
+        Exp = _exp;
+    }
     public void Attack(Player target)
     {
         target.HP -= Atk;
@@ -21,6 +28,7 @@ public class Player : MonoBehaviour
         {
             StillExp(target);
             GameManager.GetInstance().objKillMonster = this.gameObject;
+            GameManager.GetInstance().SetPedia(target.gameObject.name);
         }
     }
 
@@ -86,7 +94,8 @@ public class Player : MonoBehaviour
         if (Death())
         {
             Destroy(this.gameObject);
-            GameManager.GetInstance().Life--;
+            if(this.gameObject.tag == "Player")
+                GameManager.GetInstance().Life--;
         }
         LvUp();
     }

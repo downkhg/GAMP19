@@ -36,6 +36,7 @@ public class Responner : MonoBehaviour
         yield return new WaitForSeconds(Time);
         objPlayer = Instantiate(prefabObject);
         objPlayer.transform.position = this.gameObject.transform.position;
+        objPlayer.name = strPrefabName;
         isRespon = false;
         Debug.Log("ProcessTimmer End!");
     }
