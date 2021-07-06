@@ -27,7 +27,7 @@ public class Player : MonoBehaviour
         if (target.Death())
         {
             StillExp(target);
-            GameManager.GetInstance().objKillMonster = this.gameObject;
+            GameManager.GetInstance().guiManager.objKillMonster = this.gameObject;
             GameManager.GetInstance().SetPedia(target.gameObject.name);
         }
     }

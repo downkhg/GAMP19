@@ -20,81 +20,6 @@ public class GameManager : MonoBehaviour
         return instance;
     }
 
-    public enum E_GUISCENCE_STATE { TITLE, THEEND, GAMEOVER, PLAY }
-    public E_GUISCENCE_STATE curGUIScene;
-    public List<GameObject> listGUIScenes;
-    void ShowGUIScenes(E_GUISCENCE_STATE state)
-    {
-        for(int i = 0;  i<listGUIScenes.Count; i++)
-        {
-            if (i == (int)state)
-                listGUIScenes[i].SetActive(true);
-            else
-                listGUIScenes[i].SetActive(false);
-        }
-    }
-    public void EventChageScene(int stateNumber)
-    {
-        SetScence((E_GUISCENCE_STATE)stateNumber);
-    }
-    public void EventExit()
-    {
-        Application.Quit();
-    }
-    public void SetScence(E_GUISCENCE_STATE state)
-    {
-        switch(state)
-        {
-            case E_GUISCENCE_STATE.TITLE:
-                Time.timeScale = 0;
-                break;
-            case E_GUISCENCE_STATE.THEEND:
-                Time.timeScale = 0;
-                break;
-            case E_GUISCENCE_STATE.GAMEOVER:
-                if (objKillMonster)
-                {
-                    imgKillMonster.sprite =
-                        objKillMonster.GetComponent<SpriteRenderer>().sprite;
-                }
-                Time.timeScale = 0;
-                break;
-            case E_GUISCENCE_STATE.PLAY:
-                Time.timeScale = 1;
-                Life = 3;
-                break;
-        }
-        ShowGUIScenes(state);
-        curGUIScene = state;
-    }
-    public void UpdateScene()
-    {
-        switch (curGUIScene)
-        {
-            case E_GUISCENCE_STATE.TITLE:
-                break;
-            case E_GUISCENCE_STATE.THEEND:
-                break;
-            case E_GUISCENCE_STATE.GAMEOVER:
-                break;
-            case E_GUISCENCE_STATE.PLAY:
-                {
-                    if (Life <= 0)
-                        SetScence(E_GUISCENCE_STATE.GAMEOVER);
-                    if (responnerPlayer.objPlayer)
-                    {
-                        Player player = responnerPlayer.objPlayer.GetComponent<Player>();
-                        guiPlayerHPBar.SetState(player.HP, player.MaxHP);
-                    }
-                }
-                break;
-        }
-    }
-
-    public GameObject objKillMonster;
-    public Image imgKillMonster;
-    public GUIStateBar guiPlayerHPBar;
-
     public List<string> listMonsterPedia;
 
     public void SetPedia(string name)
@@ -119,19 +44,28 @@ public class GameManager : MonoBehaviour
         }
     }
 
+    public GUIManager guiManager;
+
+    public void EventChageScene(int stateNumber)
+    {
+        guiManager.SetScence((GUIManager.E_GUISCENCE_STATE)stateNumber);
+    }
+    public void EventExit()
+    {
+        Application.Quit();
+    }
+
     private void Start()
     {
         instance = this;
-        SetScence(curGUIScene);
-
-        guiPlayerHPBar.Init();
+        guiManager.Initialize();
     }
     // Update is called once per frame
     void Update()
     {
         CameraTrackerSetting();
         EagleResponPointSetting();
-        UpdateScene();
+        guiManager.UpdateScene();
     }
 
     void CameraTrackerSetting()

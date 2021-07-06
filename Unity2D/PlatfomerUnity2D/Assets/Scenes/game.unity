@@ -4440,7 +4440,7 @@ GameObject:
   - component: {fileID: 477025773}
   - component: {fileID: 477025772}
   m_Layer: 5
-  m_Name: Text (1)
+  m_Name: Shadow
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -6098,16 +6098,8 @@ MonoBehaviour:
   responnerEagle: {fileID: 1609517534}
   responnerOpossum: {fileID: 140249367}
   Life: 3
-  curGUIScene: 0
-  listGUIScenes:
-  - {fileID: 728799465}
-  - {fileID: 1674659529}
-  - {fileID: 1255585401}
-  - {fileID: 2036772802}
-  objKillMonster: {fileID: 0}
-  imgKillMonster: {fileID: 1083961415}
-  guiPlayerHPBar: {fileID: 1313302543}
   listMonsterPedia: []
+  guiManager: {fileID: 2079254149}
 --- !u!4 &943134153
 Transform:
   m_ObjectHideFlags: 0
@@ -6544,7 +6536,7 @@ GameObject:
   - component: {fileID: 1083961416}
   - component: {fileID: 1083961415}
   m_Layer: 5
-  m_Name: Image
+  m_Name: MonsterImage
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -10302,8 +10294,9 @@ GameObject:
   - component: {fileID: 2079254147}
   - component: {fileID: 2079254146}
   - component: {fileID: 2079254145}
+  - component: {fileID: 2079254149}
   m_Layer: 5
-  m_Name: Canvas
+  m_Name: GUIManager
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -10393,6 +10386,27 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0, y: 0}
+--- !u!114 &2079254149
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2079254144}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e33828d2e8d95b34d9d8ddf6b973f0d7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  curGUIScene: 0
+  listGUIScenes:
+  - {fileID: 728799465}
+  - {fileID: 1674659529}
+  - {fileID: 1255585401}
+  - {fileID: 2036772802}
+  objKillMonster: {fileID: 0}
+  imgKillMonster: {fileID: 1083961415}
+  guiPlayerHPBar: {fileID: 1313302543}
 --- !u!1 &2109106989 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 7666515663648939773, guid: c215c82bf6ec7c04e94dd50c7e9a0528,

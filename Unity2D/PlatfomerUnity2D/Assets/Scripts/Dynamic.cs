@@ -48,7 +48,7 @@ public class Dynamic : MonoBehaviour
         {
             if (isHouse)
             {
-                GameManager.GetInstance().SetScence(GameManager.E_GUISCENCE_STATE.THEEND);
+                GameManager.GetInstance().guiManager.SetScence(GUIManager.E_GUISCENCE_STATE.THEEND);
             }
             else
             {
