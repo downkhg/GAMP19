@@ -66,18 +66,37 @@ public class GUIManager : MonoBehaviour
                         Player player = gameManager.responnerPlayer.objPlayer.GetComponent<Player>();
                         guiPlayerHPBar.SetState(player.HP, player.MaxHP);
                     }
+
+                    if(Input.GetKeyDown(KeyCode.I))
+                    {
+                        if (objPopupLayer.activeSelf)
+                        {
+                            objPopupLayer.SetActive(false);
+                            guiInventory.DeleteIventory();
+                        }
+                        else
+                        {
+                            guiInventory.SetIventory(gUIMonsterInfo);
+                            objPopupLayer.SetActive(true);
+                            
+                        }
+                    }
                 }
                 break;
         }
     }
 
+    public GameObject objPopupLayer;
     public GameObject objKillMonster;
     public Image imgKillMonster;
     public GUIStateBar guiPlayerHPBar;
+    public GUIInventory guiInventory;
+    public GUIMonsterInfo gUIMonsterInfo;
 
     public void Initialize()
     {
         SetScence(curGUIScene);
         guiPlayerHPBar.Init();
+        objPopupLayer.SetActive(false);
     }
 }

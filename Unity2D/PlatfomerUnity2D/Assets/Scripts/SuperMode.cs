@@ -33,11 +33,11 @@ public class SuperMode : MonoBehaviour
 
     IEnumerator ProcessTimmer()
     {
-        Debug.Log("ProcessTimmer Start!");
+        //Debug.Log("ProcessTimmer Start!");
         isOn = true;
         yield return new WaitForSeconds(Time);
         GetComponent<SpriteRenderer>().color = Color.white;
         isOn = false;
-        Debug.Log("ProcessTimmer End!");
+        //Debug.Log("ProcessTimmer End!");
     }
 }

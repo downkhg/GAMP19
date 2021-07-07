@@ -68,7 +68,10 @@
     <Compile Include="Assets\Scripts\DeathZone.cs" />
     <Compile Include="Assets\Scripts\Dynamic.cs" />
     <Compile Include="Assets\Scripts\Eagle.cs" />
+    <Compile Include="Assets\Scripts\GUI\GUIInventory.cs" />
     <Compile Include="Assets\Scripts\GUI\GUIManager.cs" />
+    <Compile Include="Assets\Scripts\GUI\GUIMonsterImage.cs" />
+    <Compile Include="Assets\Scripts\GUI\GUIMonsterInfo.cs" />
     <Compile Include="Assets\Scripts\GUI\GUIStateBar.cs" />
     <Compile Include="Assets\Scripts\GameManager.cs" />
     <Compile Include="Assets\Scripts\Gun.cs" />

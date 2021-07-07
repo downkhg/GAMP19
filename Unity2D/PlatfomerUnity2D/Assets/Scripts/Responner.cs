@@ -14,7 +14,7 @@ public class Responner : MonoBehaviour
     void Start()
     {
         strPrefabName = objPlayer.name;
-        Debug.Log("Responner::Start:" + gameObject.name);
+        //Debug.Log("Responner::Start:" + gameObject.name);
     }
 
     // Update is called once per frame

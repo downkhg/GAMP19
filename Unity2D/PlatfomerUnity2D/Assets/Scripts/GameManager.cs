@@ -11,6 +11,8 @@ public class GameManager : MonoBehaviour
     public Responner responnerEagle;
     public Responner responnerOpossum;
 
+    public MonsterManager monsterManager;
+
     public int Life = 3;
 
     static GameManager instance;
@@ -57,6 +59,23 @@ public class GameManager : MonoBehaviour
 
     private void Start()
     {
+        monsterManager = GetComponent<MonsterManager>();
+
+        SetPedia("eagle");
+        SetPedia("frog");
+        SetPedia("opossum");
+        //SetPedia("eagle");
+        //SetPedia("frog");
+        //SetPedia("opossum");
+        //SetPedia("eagle");
+        //SetPedia("frog");
+        //SetPedia("opossum");
+        //SetPedia("eagle");
+        //SetPedia("frog");
+        //SetPedia("opossum");
+
+        //SetPedia("frog");
+
         instance = this;
         guiManager.Initialize();
     }

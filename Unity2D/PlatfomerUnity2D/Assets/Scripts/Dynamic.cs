@@ -28,6 +28,11 @@ public class Dynamic : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.Z))
             gun.Shot(dir,GetComponent<Player>());
 
+        if (Input.GetKey(KeyCode.S))
+        {
+            gun.LaserShot(GetComponent<Player>(), dir, 999999);
+        }
+
         //왼쪽, 위,아래 모두 추가하기
         if (Input.GetKey(KeyCode.RightArrow))
         {

@@ -19,7 +19,7 @@ public class Eagle : MonoBehaviour
     public E_AI_STATE eAIState;
     public void SetAIState(E_AI_STATE state)
     {
-        Debug.Log("SetAIState:" + state);
+        //Debug.Log("SetAIState:" + state);
         switch(state)
         {
             case E_AI_STATE.TRACKING:

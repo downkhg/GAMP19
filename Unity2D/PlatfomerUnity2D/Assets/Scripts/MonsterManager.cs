@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public struct MonsterInfo
+public class MonsterInfo
 {
     public Player playerStatus;
     public string name;
@@ -35,9 +35,9 @@ public class MonsterManager : MonoBehaviour
     {
         MonsterInfo[] monsterInfos = new MonsterInfo[]
         {
-            new MonsterInfo("opssum","opssum",20,20,5,0),
-            new MonsterInfo("eagle", "eagle", 50, 20, 20, 100),
-            new MonsterInfo("frog", "frog", 100, 20, 10, 200)
+            new MonsterInfo("opssum","opssum_comment",20,20,5,0),
+            new MonsterInfo("eagle", "eagle_comment", 50, 20, 20, 100),
+            new MonsterInfo("frog", "frog_comment", 100, 20, 10, 200)
         }; 
 
 

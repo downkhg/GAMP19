@@ -19,6 +19,41 @@ public class Gun : MonoBehaviour
         bullet.master = player;
     }
 
+    public void LaserShot(Player player, Vector3 dir, float dist)
+    {
+        Vector3 vPos = this.transform.position;
+
+        RaycastHit2D raycastHit =
+            Physics2D.Raycast(vPos, dir, dist, 1 << LayerMask.NameToLayer("Monster"));
+
+        LineRenderer lineRenderer = GetComponent<LineRenderer>();
+        lineRenderer.SetPosition(0, vPos);
+
+        //Debug.DrawLine(vPos, vPos + dir * dist, Color.red);
+        if (raycastHit.collider)
+        {
+            lineRenderer.endColor = Color.red;
+            lineRenderer.SetPosition(1, raycastHit.point);
+
+            Debug.DrawLine(vPos, raycastHit.point, Color.green);
+            Player monster = raycastHit.collider.gameObject.GetComponent<Player>();
+
+            SuperMode superMode = monster.GetComponent<SuperMode>();
+            if (superMode && !superMode.isOn)
+            {
+                player.Attack(monster);
+                superMode.SetMode();
+            }
+        }
+        else
+        {
+            lineRenderer.endColor = Color.green;
+
+            lineRenderer.SetPosition(1, vPos + dir * dist);
+            Debug.DrawLine(vPos, vPos + dir * dist, Color.red);
+        }
+    }
+
     // Start is called before the first frame update
     void Start()
     {
