@@ -109,10 +109,16 @@ void YearCheckMain()
 	else
 		printf("not leap year!:%d\n",year);//2100
 }
-
+//점수를 입력받아 학점을 구하는 프로그램만들기
+//(단, 90점이상 A, 90점미만, 80점이상 B, 80점미만, 70점이상 C, 70점미만 60점이상 D, 60점미만 F)
+//데이터: 점수, 학점
+//알고리즘:  90점이상 A, 90점미만, 80점이상 B, 80점미만, 70점이상 C, 70점미만 60점이상 D, 60점미만 F
 void GradeMain()
 {
+	int Score;
+	char Grade;
 
+	//if()
 }
 
 void main()
