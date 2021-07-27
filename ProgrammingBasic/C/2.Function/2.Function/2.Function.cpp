@@ -19,7 +19,38 @@ void AddTestMain()//2
 	printf("Result:%d/%f\n", nResult, fResult);//7. 30
 }
 
+//함수의 선언:이런함수가 있다는것을 미리 컴파일러에게 알림.
+int Combination(int n, int r);
+int Factorial(int n);
+
+int CombinationTestMain(void)
+{
+	int a, b;
+
+	scanf("%d", &a);
+	scanf("%d", &b);
+	printf("C(%d, %d) = %d \n", a, b, Combination(a, b));
+	return 0;
+}
+//함수의 정의:선언한 함수의 실체를 만듦.
+int Factorial(int n)
+{
+	int i;
+	long result = 1;
+
+	for (i = 1; i <= n; i++)
+		result *= i;
+	return result;
+}
+int combination(int n, int r)
+{
+	int a = Factorial(n);
+	int b = Factorial(r);
+	int c = Factorial(n - r);
+	return (a / b * c);
+}
 void main()
 {
-	AddTestMain();//1
+	//AddTestMain();//1
+	CombinationTestMain();
 } //8
