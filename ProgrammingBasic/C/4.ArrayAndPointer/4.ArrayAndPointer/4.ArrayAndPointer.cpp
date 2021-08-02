@@ -121,13 +121,13 @@ void FunctionAndPointerMain()
 
 void ArrayAndPointerMain()
 {
-	const int nSize = 5;//배열의크기는 반드시 상수로 정의해야한다.
+	const int nSize = 3;//배열의크기는 반드시 상수로 정의해야한다.
 	int arrScore[nSize];
 	int nMemorySize = sizeof(arrScore);
 	int nArraySize = nMemorySize / sizeof(arrScore[0]);
 	printf("MemorySize:%d\n", nMemorySize);
 	printf("MemoryArray:%d\n", nArraySize);
-	printf("arrScore[%d]:%d", &arrScore, arrScore);
+	printf("arrScore[%d]:%d\n", &arrScore, arrScore);
 	for (int i = 0; i < nSize; i++)
 		arrScore[i] = 100 - (i * 10);
 	printf("Score:");
@@ -165,5 +165,6 @@ void main()
 {
 	//ArrayTestMain();
 	//PointerMain();
-	FunctionAndPointerMain();
+	//FunctionAndPointerMain();
+	ArrayAndPointerMain();
 }
