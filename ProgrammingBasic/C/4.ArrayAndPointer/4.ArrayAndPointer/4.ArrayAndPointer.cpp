@@ -1,4 +1,5 @@
 #include <stdio.h>
+#include <string.h>
 
 void ArrayTestMain()
 {
@@ -116,6 +117,48 @@ void FunctionAndPointerMain()
 	printf("SwapPtr:[%d]%d<->[%d]%d\n", &nDataA, nDataA, &nDataB, nDataB);
 	SwapRef(nDataA, nDataB);
 	printf("SwapRef:[%d]%d<->[%d]%d\n", &nDataA, nDataA, &nDataB, nDataB);
+}
+
+void ArrayAndPointerMain()
+{
+	const int nSize = 5;//배열의크기는 반드시 상수로 정의해야한다.
+	int arrScore[nSize];
+	int nMemorySize = sizeof(arrScore);
+	int nArraySize = nMemorySize / sizeof(arrScore[0]);
+	printf("MemorySize:%d\n", nMemorySize);
+	printf("MemoryArray:%d\n", nArraySize);
+	printf("arrScore[%d]:%d", &arrScore, arrScore);
+	for (int i = 0; i < nSize; i++)
+		arrScore[i] = 100 - (i * 10);
+	printf("Score:");
+	for (int i = 0; i < nSize; i++)
+		printf("[%d/%d]%d,", &arrScore[i],i, arrScore[i]);
+	printf("\n");
+
+	for (int i = 0; i < nSize; i++)
+		printf("[%d/%d]%d,", arrScore+i, i, *(arrScore+i));
+	printf("\n");
+	int* pScore = arrScore;
+	for (int i = 0; i < nSize; i++)
+	{
+		printf("[%d/%d]%d,", pScore, i, *pScore);
+		pScore++;
+	}
+	printf("\n");
+
+	int arrCopyScore[nSize];
+	printf("Score/CopyScore: %d/%d\n",
+		arrCopyScore, arrScore);
+	//arrCopyScore = arrScore; //대입한다고해서 복사되지않음.
+	for (int i = 0; i < nSize; i++)
+	{
+		arrCopyScore[i] = arrScore[i];
+	}
+	memcpy(arrCopyScore, arrScore, sizeof(arrScore));
+	printf("CopyScore:");
+	for (int i = 0; i < nSize; i++)
+		printf("[%d]%d,", i, arrCopyScore[i]);
+	printf("\n");
 }
 
 void main()
