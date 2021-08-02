@@ -161,10 +161,54 @@ void ArrayAndPointerMain()
 	printf("\n");
 }
 
+void InitArray(int arrScore[], int size)
+{
+	printf("InitArray:%d\n",arrScore);
+	for (int i = 0; i < size; i++)
+		arrScore[i] = 100 - (i * 10);
+}
+
+void PrintArray(const int arrScore[], int size, const char* msg)
+{
+	printf("PrintArray:%d\n", arrScore);
+	printf("s:",msg);
+	for (int i = 0; i < size; i++)
+		printf("[%d/%d]%d,", &arrScore[i], i, arrScore[i]);
+	printf("\n");
+}
+
+void CopyArray(int arrCopy[], const int arrOrigin[], int size)
+{
+	printf("PrintArray:%d<->%d\n", arrCopy, arrOrigin);
+	for (int i = 0; i < size; i++)
+	{
+		arrCopy[i] = arrOrigin[i];
+	}
+}
+
+void ArrayAndFunctionMain()
+{
+	const int nSize = 3;//배열의크기는 반드시 상수로 정의해야한다.
+	int arrScore[nSize];
+	int nMemorySize = sizeof(arrScore);
+	int nArraySize = nMemorySize / sizeof(arrScore[0]);
+	printf("MemorySize:%d\n", nMemorySize);
+	printf("MemoryArray:%d\n", nArraySize);
+	printf("arrScore[%d]:%d\n", &arrScore, arrScore);
+	InitArray(arrScore, nSize);
+	PrintArray(arrScore, nSize, "Score:");
+
+	int arrCopyScore[nSize];
+	printf("Score/CopyScore: %d/%d\n",arrCopyScore, arrScore);
+	CopyArray(arrCopyScore,arrScore, nMemorySize);
+	PrintArray(arrCopyScore, nSize, "CopyArray:");
+}
+
 void main()
 {
 	//ArrayTestMain();
 	//PointerMain();
 	//FunctionAndPointerMain();
-	ArrayAndPointerMain();
+	//ArrayAndPointerMain();
+	ArrayAndFunctionMain();
 }
