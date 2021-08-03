@@ -160,23 +160,32 @@ void ArrayAndPointerMain()
 		printf("[%d]%d,", i, arrCopyScore[i]);
 	printf("\n");
 }
-
+//배열을 매개변수로 넘기면 주소값이 전달된다. 
+//그러므로, 원본의 주소에 접근하여 배열의값을 변경하므로, 원본을 변경할수있다.
 void InitArray(int arrScore[], int size)
 {
 	printf("InitArray:%d\n",arrScore);
 	for (int i = 0; i < size; i++)
 		arrScore[i] = 100 - (i * 10);
 }
-
+//원본을 변경하고 싶지않으면 const를 이용하여 원본의 손상을 막을수있다.
 void PrintArray(const int arrScore[], int size, const char* msg)
 {
+	//arrScore[0] = 10; //상수로 받은 배열의 값은 변경할수없다.
 	printf("PrintArray:%d\n", arrScore);
 	printf("s:",msg);
 	for (int i = 0; i < size; i++)
 		printf("[%d/%d]%d,", &arrScore[i], i, arrScore[i]);
 	printf("\n");
 }
-
+//배열의이름은 주소값을 가지고있으므로, 포인터를 받아도 포인터연산을 통해 배열에 접근이 가능하다.
+void PrintArrayPtr(const int* arrScore, int size)
+{
+	printf("PrintArrayPtr:%d\n", arrScore);
+	for (int i = 0; i < size; i++)
+		printf("[%d/%d]%d,", &arrScore[i], i, arrScore[i]);
+	printf("\n");
+}
 void CopyArray(int arrCopy[], const int arrOrigin[], int size)
 {
 	printf("PrintArray:%d<->%d\n", arrCopy, arrOrigin);
@@ -185,7 +194,7 @@ void CopyArray(int arrCopy[], const int arrOrigin[], int size)
 		arrCopy[i] = arrOrigin[i];
 	}
 }
-
+//배열과함수: 배열의 이름은 주소값을 가지고 있으므로, 원본을 변경할수있다.
 void ArrayAndFunctionMain()
 {
 	const int nSize = 3;//배열의크기는 반드시 상수로 정의해야한다.
@@ -197,11 +206,50 @@ void ArrayAndFunctionMain()
 	printf("arrScore[%d]:%d\n", &arrScore, arrScore);
 	InitArray(arrScore, nSize);
 	PrintArray(arrScore, nSize, "Score:");
-
 	int arrCopyScore[nSize];
 	printf("Score/CopyScore: %d/%d\n",arrCopyScore, arrScore);
-	CopyArray(arrCopyScore,arrScore, nMemorySize);
+	PrintArrayPtr(arrCopyScore, nSize);
+	CopyArray(arrCopyScore,arrScore, nSize);
 	PrintArray(arrCopyScore, nSize, "CopyArray:");
+}
+//2차원배열은 메모리가 1차원구조이므로, 순서대로 놓아야하며, 넓이를 알아야 메모리를 1차원구조로 연속적으로 놓을수있다.
+//실제로 OpoenCV와 같은 영상처리라이브러리도 이미지를 1차원으로 취급하여 사용하기도한다.
+void Array2DMain()
+{
+	const int nWidht = 5;
+	const int nHeight = 3;
+	int arr2D[nHeight][nWidht];
+	int arrFake2D[nWidht * nHeight];
+	for (int y = 0; y < nHeight; y++)
+	{
+		for (int x = 0; x < nWidht; x++)
+		{
+			int idx = nWidht * y + x; //5*0+0 = 0,1,2,3,4 //5*1+0 = 5,6,7,8,9 //5*2+0 = 10,11,12,13,14
+			arr2D[y][x] = idx;
+			arrFake2D[idx] = idx;
+		}
+	}
+	printf("################# Array2D #################\n");
+	for (int y = 0; y < nHeight; y++)
+	{
+		printf("[%d]%d-", y, arr2D[y]);
+		for (int x = 0; x < nWidht; x++)
+		{
+			printf("%d[%d][%d]:%d,", &arr2D[y][x],y,x, arr2D[y][x]);
+		}
+		printf("\n");
+	}
+	printf("################# FakeArray2D #################\n");
+	for (int y = 0; y < nHeight; y++)
+	{
+		printf("[%d]%d-", y, arr2D);
+		for (int x = 0; x < nWidht; x++)
+		{
+			int idx = nWidht * y + x;
+			printf("%d[%d][%d]:%d,", &arrFake2D[idx], y, x, arrFake2D[idx]);
+		}
+		printf("\n");
+	}
 }
 
 void main()
@@ -210,5 +258,6 @@ void main()
 	//PointerMain();
 	//FunctionAndPointerMain();
 	//ArrayAndPointerMain();
-	ArrayAndFunctionMain();
+	//ArrayAndFunctionMain();
+	Array2DMain();
 }
