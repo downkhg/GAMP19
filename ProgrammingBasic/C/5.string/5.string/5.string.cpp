@@ -65,12 +65,71 @@ void FullNameMain()
 	sprintf(strFullName,"%s %s",strFistName, strLastName);
 
 	printf("FullName:%s\n",strFullName);
+
+	if (strcmp(strFistName, strLastName) == 0)
+		printf("%s == %s", strFistName, strLastName);
+	else
+		printf("%s != %s", strFistName, strLastName);
 }
 //1.반복문사용해서 만들기
 //2.반복문을 사용하지않고 문자열라이브러리 이용하여 만들기
+//정답:GAME
+//Q:____
+//A:A
+//Q:_A__
+//A:E
+//Q:_A_E
+//......
+//A:G
+//Q:GAME
+//데이터: 정답(문자열),입력값(문자),빈(문자열)
+//알고리즘: 정답에 입력값이 있다면, (????:빈문자열)에 해당문자열을 보여준다.
+//정답안에 입력값이 있다? -> 찾기: 문자열을 모두 확인하고 입력문자열이 있는지 확인한다.
+//정답과 빈문자열이 같다-> 문자열을 모두 비교해서 모든 값이 같으면 같다.  
+void HangManGame()
+{
+	char strAnswer[24] = "GAME";
+	char cInput;
+	char strEmpty[24] = "____";
+	while (true)
+	{
+		printf("Q:%s\n", strEmpty);
+		scanf("%c", &cInput);
+		int idx = 0;
+		int nResultIdx = -1;
+		while ('\0' != strAnswer[idx])
+		{
+			if (cInput == strAnswer[idx])
+			{
+				nResultIdx = idx;
+				printf("Find %c is %d\n", cInput, idx);
+				break;
+			}
+			idx++;
+		}
+		if (nResultIdx > -1)
+		{
+			strEmpty[nResultIdx] = cInput;
+			printf("Q:%s\n", strEmpty);
+		}
+		else
+			printf("%c is not found!\n", cInput);
+		int nMachCount = 0;
+		int nCount = 0;
+		for (idx = 0; strAnswer[idx] != '\0'; idx++)
+		{
+			if (strAnswer[idx] == strEmpty[idx]) nMachCount++;
+			nCount++;
+		}
+		if (nCount == nMachCount)
+			break;
+	}
+}
+
 void main()
 {
 	//StringTestMain();
 	//InputIDMain();
-	FullNameMain();
+	//FullNameMain();
+	HangManGame();
 }
