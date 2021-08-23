@@ -50,7 +50,7 @@ void main()
 	PrintLinkedList(pBegin);
 
 	SNode* pFind = FindNodeData(pBegin, 40);
-	if (pFind != NULL)
+	if (pFind)//0거짓 
 		printf("Find:%d\n", pFind->nData);
 
 	pEnd = InsertNodeData(pBegin, 30, 60);//노드 삽입
@@ -72,7 +72,9 @@ SNode* CreateNode(SNode* pNode, int data)
 
 	pTemp = new SNode();
 	pTemp->nData = data;
-
+	if (pNode != NULL)//0x04 != N -> T
+		pNode->pNext = pTemp; //작동하지않으나 정상적인 코드
+	//pTemp->pNext = pNode; //작동하지만 정상적이지않은 코드
 	return  pTemp;
 }
 
@@ -80,7 +82,19 @@ SNode* FindNodeData(SNode* pStart, int data)
 {
 	SNode* pNode = pStart;
 
-	return pNode;
+	//if (pStart->nData != data) //10!=40 ->T
+	//	pNode = pStart->pNext;
+	//while (true)
+	//while(pNode->nData != data) //못찻는 노드가있다면 오류가 발생함
+	while(pNode)//0x04 != N -> F //포인터의 값이 있다면 T
+	{
+		if (pNode->nData != data) //40!=40 ->F
+			pNode = pNode->pNext;
+		else //40==40 ->T
+			break;
+	}
+
+	return pNode;//0x04
 }
 
 SNode* InsertNodeData(SNode* pStart, int data, int insert)
@@ -89,6 +103,12 @@ SNode* InsertNodeData(SNode* pStart, int data, int insert)
 	SNode* pInsert = NULL;
 
 	pNode = FindNodeData(pStart, data);
+
+	pInsert = new SNode();
+	pInsert->nData = insert;
+	//pNode->pNext = pInsert;
+	pInsert->pNext = pNode->pNext;
+	pNode->pNext = pInsert;
 
 	return pNode;
 }
