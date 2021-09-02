@@ -41,9 +41,9 @@ bool MakeRight(SNode* pPerant, SNode* pChilde)
 void Traverse(SNode* pNode)
 {
 	if (!pNode) return;
-	printf("%d\n", pNode->nData); //전위
+	//printf("%d\n", pNode->nData); //전위
 	Traverse(pNode->pLeft);
-	//printf("%d\n", pNode->nData); //중위
+	printf("%d\n", pNode->nData); //중위
 	Traverse(pNode->pRight);
 	//printf("%d\n", pNode->nData); //후위
 }
@@ -111,6 +111,7 @@ void TreeMain()
 	Print(pSeed);
 }
 
+
 void MinHipTreeMain()
 {
 	////최상위 부모가 가장작은 노드를 가진다.
@@ -150,7 +151,29 @@ void MinHipTreeMain()
 	Print(pRoot);
 }
 
+void SetTestMain()
+{
+	const int SIZE = 7;
+	SNode* arrNode[SIZE];
+	for (int i = 0; i < SIZE; i++)
+		arrNode[i] = CreateNode(i * 10);
+
+	SNode* pSeed = arrNode[3];
+
+	MakeLeft(arrNode[3], arrNode[1]);
+	MakeRight(arrNode[3], arrNode[5]);
+
+	MakeLeft(arrNode[1], arrNode[0]);
+	MakeRight(arrNode[1], arrNode[2]);
+
+	MakeLeft(arrNode[5], arrNode[4]);
+	MakeRight(arrNode[5], arrNode[6]);
+
+	Print(pSeed);
+}
+
 void main()
 {
-	MinHipTreeMain();
+	//MinHipTreeMain();
+	SetTestMain();
 }
