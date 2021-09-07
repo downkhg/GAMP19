@@ -2,6 +2,7 @@
 #include <list>
 #include <vector>
 #include <stack>
+#include <queue>
 
 using namespace std;
 
@@ -100,6 +101,57 @@ void TraverDFSStack(SNode* pNode)
 	while (!visit.empty());
 }
 
+
+SNode* VisitBFS(SNode* pNode, queue<SNode*>& visit)
+{
+	SNode* pNext = NULL;
+	if (pNode)
+	{
+		if (pNode->bVisit == false)
+		{
+			cout << pNode->cData << endl;
+			//cout << "Visit:" << pNode->cData << endl;
+			pNode->bVisit = true;
+			visit.push(pNode);
+		}
+		else
+		{
+			//cout << "Revisit! " << visit.front()->cData << endl;
+		}
+		list<SNode*>::iterator it = pNode->listNext.begin();
+		for (; it != pNode->listNext.end(); it++)
+		{
+			SNode* pNode = *it;
+			if (pNode->bVisit == false)
+			{
+				cout << pNode->cData << endl;
+				//cout << "Visit Child:" << pNode->cData << endl;
+				pNode->bVisit = true;
+				visit.push(pNode);
+			}
+		}
+		pNext = NULL;
+	}
+	else
+	{
+		//cout << "Visit Complete! " << visit.front()->cData << endl;
+		visit.pop();
+		if (!visit.empty())
+			pNext = visit.front();
+	}
+	return pNext;
+}
+
+void TraverBFS(SNode* pNode)
+{
+	queue<SNode*> visit;
+	do
+	{
+		pNode = VisitBFS(pNode,visit);
+	}
+	while (!visit.empty());
+}
+
 void TraverseReset(vector<SNode*>& vec)
 {
 	for (int i = 0; i < vec.size(); i++)
@@ -151,6 +203,7 @@ void main()
 
 	//TraverseDFSRecursion(vecNodes[A]);
 	TraverDFSStack(vecNodes[A]);
+	//TraverBFS(vecNodes[A]);
 	TraverseReset(vecNodes);
 
 	for (int i = 0; i < vecNodes.size(); i++)
