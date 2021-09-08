@@ -102,9 +102,8 @@ void TraverDFSStack(SNode* pNode)
 }
 
 
-SNode* VisitBFS(SNode* pNode, queue<SNode*>& visit)
+bool Visit(SNode* pNode, queue<SNode*>& visit)
 {
-	SNode* pNext = NULL;
 	if (pNode)
 	{
 		if (pNode->bVisit == false)
@@ -113,33 +112,14 @@ SNode* VisitBFS(SNode* pNode, queue<SNode*>& visit)
 			//cout << "Visit:" << pNode->cData << endl;
 			pNode->bVisit = true;
 			visit.push(pNode);
+			return true;
 		}
 		else
 		{
 			//cout << "Revisit! " << visit.front()->cData << endl;
 		}
-		list<SNode*>::iterator it = pNode->listNext.begin();
-		for (; it != pNode->listNext.end(); it++)
-		{
-			SNode* pNode = *it;
-			if (pNode->bVisit == false)
-			{
-				cout << pNode->cData << endl;
-				//cout << "Visit Child:" << pNode->cData << endl;
-				pNode->bVisit = true;
-				visit.push(pNode);
-			}
-		}
-		pNext = NULL;
 	}
-	else
-	{
-		//cout << "Visit Complete! " << visit.front()->cData << endl;
-		visit.pop();
-		if (!visit.empty())
-			pNext = visit.front();
-	}
-	return pNext;
+	return false;
 }
 
 void TraverBFS(SNode* pNode)
@@ -147,7 +127,17 @@ void TraverBFS(SNode* pNode)
 	queue<SNode*> visit;
 	do
 	{
-		pNode = VisitBFS(pNode,visit);
+		Visit(pNode,visit);
+
+		list<SNode*>::iterator it = pNode->listNext.begin();
+		for (; it != pNode->listNext.end(); it++)
+		{
+			SNode* pNode = *it;
+			Visit(pNode, visit);
+		}
+		visit.pop();
+		if (!visit.empty())
+			pNode = visit.front();
 	}
 	while (!visit.empty());
 }
