@@ -38,7 +38,10 @@ public:
 	//복사생성자: 객체가 초기화될때 같은 객체를 복사하면 호출되는 함수 
 	CCar(CCar& car)
 	{
-		memcpy_s(this, sizeof(CCar), &car, sizeof(CCar));
+		//memcpy_s(this, sizeof(CCar), &car, sizeof(CCar));
+		m_strColor = car.m_strColor;
+		m_nSpeed = car.m_nSpeed;
+		m_eGear = car.m_eGear;
 		cout << "Car Copy[" << this << "]:" << m_strColor << endl;
 	}
 	//소멸자: 할당된 메모리가 소멸될때 호출되는 함수
@@ -54,7 +57,6 @@ public:
 	{
 		m_nSpeed--;
 	}
-	
 	void Display()
 	{
 		cout << "#### " << m_strColor << " ####" << endl;
