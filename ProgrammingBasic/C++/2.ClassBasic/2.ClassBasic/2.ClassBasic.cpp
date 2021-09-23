@@ -4,6 +4,8 @@ using namespace std;
 //추상화: 실제 물체를 보고 클래스로 만드는 과정.
 //전구: 속성-전원, 동작-켜기/끄기
 //자동자: 속성-속도,기어,색상 동작-엑셀,브레이크,기어변경
+//강아지(육성/전투): 속성-나이,체력,배고픔,크기,호감도,청결도,지능,호전도/체력,공격력,방어력,경험치,레벨  동작-생일,놀기,먹기,목욕,훈련/공격,렙업
+//생명체는 어떻게 보느냐에 따라 추상화가 달라질수있다. 이것은 게임의 기획과도 유사하다.
 class CCar
 {
 public:
@@ -27,6 +29,7 @@ public:
 	void SetColor(string color) { m_strColor = color; } //자동차의 색깔을 내가 원한다면 바꿀수있다.
 	void SetGear(E_GEAR gear){ m_eGear = gear; }
 	//void SetSpeed(int speed) { m_nSpeed = speed; } //물리법칙상 속도는 임의로 변경이 불가능하다. 그러므로 변경할수없다.
+	//생성자: 객체가 생성(메모리할당)될때 호출되는 함수.
 	//디폴트매개변수변수를 이용하여 디폴트생성자와 같은 역할을 하도록할수있다.
 	CCar(string color = "gray", E_GEAR gear = E_GEAR::N, int speed = 0)//매개변수가있는 생성자: 매개변수를 지정하면, 반드시 초기화해야만 메모리를 할당되게 만들수있다.
 	{
@@ -38,7 +41,7 @@ public:
 	//복사생성자: 객체가 초기화될때 같은 객체를 복사하면 호출되는 함수 
 	CCar(CCar& car)
 	{
-		//memcpy_s(this, sizeof(CCar), &car, sizeof(CCar));
+		//memcpy_s(this, sizeof(CCar), &car, sizeof(CCar)); //일부 컴퓨터에서 문제가 발생
 		m_strColor = car.m_strColor;
 		m_nSpeed = car.m_nSpeed;
 		m_eGear = car.m_eGear;
@@ -57,6 +60,8 @@ public:
 	{
 		m_nSpeed--;
 	}
+	//이 함수가 없다면, 계기판이 없는 자동차
+	//추상화와 상관없이 필요하다면 기능을 추가해야한다.
 	void Display()
 	{
 		cout << "#### " << m_strColor << " ####" << endl;
