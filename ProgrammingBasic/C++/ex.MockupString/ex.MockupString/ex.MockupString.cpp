@@ -39,6 +39,9 @@ namespace Mockup
 		}
 		string(string& str)
 		{
+			/*int nSize = strlen(str.pStr) + 1;
+			pStr = new char[nSize];
+			strcpy_s(pStr, nSize, str.pStr);*/
 			pStr = str.pStr;
 			cout << "FakeString Copy[" << this << "]:" << (int)pStr << endl;
 		}
