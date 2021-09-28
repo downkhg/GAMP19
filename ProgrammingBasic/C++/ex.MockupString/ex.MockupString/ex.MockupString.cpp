@@ -15,10 +15,42 @@ void STDStringMain()
 	cout << strMsg.c_str() << endl; //const char*를 리턴하는 함수 //Test
 	printf("%d:%s\n", strMsg.c_str(), strMsg.c_str()); //0x01:Test
 	cout << strMsg2.c_str() << endl; //DataTest
-	printf("%d:%s\n", strMsg2.c_str(), strMsg2.c_str());//0x02:DataTest
-	cout << srtCopyMsg.c_str() << endl; //Test
-	printf("%d:%s\n", srtCopyMsg.c_str(), srtCopyMsg.c_str());//0x03:Test
+	printf("%d:%s\n", strMsg2.c_str(), strMsg2.c_str()); //0x02:DataTest
+	printf("%d:%s\n", srtCopyMsg.c_str(), srtCopyMsg.c_str()); //0x03:Test
 	cout << "##### STDStringMain End######" << endl;
+}
+
+void STDStringHangManMain()
+{
+	string strAnswer = "GAME";
+	char cInput;
+	string strEmpty = "____";
+	while (true)
+	{
+		printf("Q:%s\n", strEmpty.c_str());
+		scanf("%c", &cInput);
+		int idx = 0;
+		int nResultIdx = strAnswer.find(cInput);
+		if (nResultIdx > -1)
+		{
+			//strEmpty[nResultIdx] = cInput;
+			strEmpty.replace(nResultIdx, 1, 1, cInput);
+			printf("Q:%s\n", strEmpty.c_str());
+		}
+		else
+			printf("%c is not found!\n", cInput);
+		if (strEmpty == strAnswer)
+			break;
+		int nMachCount = 0;
+		int nCount = 0;
+		for (idx = 0; strAnswer[idx] != '\0'; idx++)
+		{
+			if (strAnswer[idx] == strEmpty[idx]) nMachCount++;
+			nCount++;
+		}
+		if (nCount == nMachCount)
+			break;
+	}
 }
 
 namespace Mockup
@@ -27,12 +59,16 @@ namespace Mockup
 	{
 		char* pStr; //동적할당된 문자열의 주소를 저장할 포인터
 	public:
+		string()
+		{
+			pStr = NULL;
+		}
 		//생성자에서 동적할당된 메모리는 객체가 소멸될때 호출되어야한다.
 		string(const char* str)
 		{
 			int nSize = strlen(str) + 1;
 			//매개변수로 받은 문자열을 동적할당(문자열의 길이 +1 만큼)된 문자열에 포인터에 저장하고,
-			pStr = new char[nSize];
+			pStr = new char[strlen(str) + 1];
 			//동적할당된메모리에 매개변수의 문자열을 복사한다.
 			strcpy_s(pStr, nSize, str);
 			cout << "FakeString[" << this << "]:" << (int)pStr << endl;
@@ -66,13 +102,45 @@ void MockupStringMain()
 	Mockup::string srtCopyMsg = strMsg; //복사생성자
 
 	cout << strMsg.c_str() << endl; //const char*를 리턴하는 함수 //Test
-	printf("%d:%s\n", strMsg.c_str(), strMsg.c_str()); //0x01:Test
+	printf("%d:%s\n", strMsg.c_str(), strMsg.c_str()); //0x01: Test
 	cout << strMsg2.c_str() << endl; //DataTest
-	printf("%d:%s\n", strMsg2.c_str(), strMsg2.c_str());//0x02: DataTest
-	cout << srtCopyMsg.c_str() << endl; //Test 
-	printf("%d:%s\n", srtCopyMsg.c_str(), srtCopyMsg.c_str());//0x01: Test
+	printf("%d:%s\n", strMsg2.c_str(), strMsg2.c_str()); //0x02: DataTest
+	cout << srtCopyMsg.c_str() << endl; //0x01: Test
+	printf("%d:%s\n", srtCopyMsg.c_str(), srtCopyMsg.c_str()); //0x01:Test -> 0x03:Test
 	cout << "##### FakeStringMain End######" << endl;
 }
+
+void MockupStringHangManMain()
+{
+	Mockup::string strAnswer = "GAME";
+	char cInput;
+	Mockup::string strEmpty = "____";
+	while (true)
+	{
+		printf("Q:%s\n", strEmpty.c_str());
+		scanf("%c", &cInput);
+		int idx = 0;
+		int nResultIdx = strAnswer.find(cInput);
+		if (nResultIdx > -1)
+		{
+			//strEmpty[nResultIdx] = cInput;
+			strEmpty.replace(nResultIdx, 1, 1, cInput);
+			printf("Q:%s\n", strEmpty.c_str());
+		}
+		else
+			printf("%c is not found!\n", cInput);
+		if (strEmpty == strAnswer)
+			break;
+		int nMachCount = 0;
+		int nCount = 0;
+		for (idx = 0; strAnswer[idx] != '\0'; idx++)
+		{
+			if (strAnswer[idx] == strEmpty[idx]) nMachCount++;
+			nCount++;
+		}
+		if (nCount == nMachCount)
+			break;
+	}
 
 void main()
 {
