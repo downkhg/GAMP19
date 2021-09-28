@@ -10,16 +10,20 @@ void STDStringMain()
 	cout << "##### STDStringMain Start######" << endl;
 	string strMsg("Test"); //생성자
 	string strMsg2("DataTest"); //생성자
-	string srtCopyMsg = strMsg; //복사생성자
+	string strCopyMsg = strMsg; //복사생성자
+	string strCopyMsg2;
+	strCopyMsg2 = strMsg2; //대입연산자
 
 	cout << strMsg.c_str() << endl; //const char*를 리턴하는 함수 //Test
 	printf("%d:%s\n", strMsg.c_str(), strMsg.c_str()); //0x01:Test
 	cout << strMsg2.c_str() << endl; //DataTest
 	printf("%d:%s\n", strMsg2.c_str(), strMsg2.c_str()); //0x02:DataTest
-	printf("%d:%s\n", srtCopyMsg.c_str(), srtCopyMsg.c_str()); //0x03:Test
+	printf("%d:%s\n", strCopyMsg.c_str(), strCopyMsg.c_str()); //0x03:Test
+	printf("%d:%s\n", strCopyMsg2.c_str(), strCopyMsg2.c_str()); //0x04:DataTest
 	cout << "##### STDStringMain End######" << endl;
 }
-
+//Find 리턴값 2 매개변수 1
+//1.char 2.int 3.float
 void STDStringHangManMain()
 {
 	string strAnswer = "GAME";
@@ -28,13 +32,13 @@ void STDStringHangManMain()
 	while (true)
 	{
 		printf("Q:%s\n", strEmpty.c_str());
-		scanf("%c", &cInput);
+		scanf_s("%c", &cInput);
 		int idx = 0;
 		int nResultIdx = strAnswer.find(cInput);
 		if (nResultIdx > -1)
 		{
 			//strEmpty[nResultIdx] = cInput;
-			strEmpty.replace(nResultIdx, 1, 1, cInput);
+			string strTemp = strEmpty.replace(nResultIdx, 1, 1, cInput);
 			printf("Q:%s\n", strEmpty.c_str());
 		}
 		else
@@ -52,7 +56,9 @@ void STDStringHangManMain()
 			break;
 	}
 }
-
+//매개변수에 const를 넣은이유
+//1.의미없다 2. 변경하지않게하려고 3.변경하려고
+//1.바꿀수없다 2.변경할수있다. 3.의미없다
 namespace Mockup
 {
 	class string
@@ -87,9 +93,34 @@ namespace Mockup
 			cout << "~FakeString[" << this << "]:" << (int)pStr << endl;
 			delete[] pStr;
 		}
+		string operator=(const string str)
+		{
+			pStr = str.pStr;
+			return *this;
+		}
+		int find(const char find)
+		{
+			return 0;
+		}
+		string& replace(int offset, int number, int count, int replace)
+		{
+			return *this;
+		}
 		const char* c_str()
 		{
 			return pStr;
+		}
+		bool operator==(const string& str)
+		{
+			return false;
+		}
+		char operator[](int idx)
+		{
+			return 0;
+		}
+		friend ostream& operator<< (ostream & os, const string & str)
+		{
+			return os << str.pStr;
 		}
 	};
 }
@@ -99,17 +130,25 @@ void MockupStringMain()
 	cout << "##### FakeStringMain Start ######" << endl;
 	Mockup::string strMsg("Test"); //생성자
 	Mockup::string strMsg2("DataTest"); //생성자
-	Mockup::string srtCopyMsg = strMsg; //복사생성자
+	Mockup::string strCopyMsg = strMsg; //복사생성자
+	Mockup::string strCopyMsg2;
+	strCopyMsg2 = strMsg2; //대입연산자
 
 	cout << strMsg.c_str() << endl; //const char*를 리턴하는 함수 //Test
 	printf("%d:%s\n", strMsg.c_str(), strMsg.c_str()); //0x01: Test
 	cout << strMsg2.c_str() << endl; //DataTest
 	printf("%d:%s\n", strMsg2.c_str(), strMsg2.c_str()); //0x02: DataTest
-	cout << srtCopyMsg.c_str() << endl; //0x01: Test
-	printf("%d:%s\n", srtCopyMsg.c_str(), srtCopyMsg.c_str()); //0x01:Test -> 0x03:Test
+	cout << strCopyMsg.c_str() << endl; //0x01: Test
+	printf("%d:%s\n", strCopyMsg.c_str(), strCopyMsg.c_str()); //0x01:Test -> 0x03:Test
+	printf("%d:%s\n", strCopyMsg2.c_str(), strCopyMsg2.c_str()); //0x01:Test -> 0x03:Test
 	cout << "##### FakeStringMain End######" << endl;
+	cout << strMsg << endl;
 }
-
+//== 리턴값, [] 매개변수 1
+//1.int 2.bool 3.char
+//== 매개변수 3
+//[] 리턴값 1
+//1.char 2.char* 3.string
 void MockupStringHangManMain()
 {
 	Mockup::string strAnswer = "GAME";
@@ -118,7 +157,7 @@ void MockupStringHangManMain()
 	while (true)
 	{
 		printf("Q:%s\n", strEmpty.c_str());
-		scanf("%c", &cInput);
+		scanf_s("%c", &cInput);
 		int idx = 0;
 		int nResultIdx = strAnswer.find(cInput);
 		if (nResultIdx > -1)
@@ -141,6 +180,7 @@ void MockupStringHangManMain()
 		if (nCount == nMachCount)
 			break;
 	}
+}
 
 void main()
 {
