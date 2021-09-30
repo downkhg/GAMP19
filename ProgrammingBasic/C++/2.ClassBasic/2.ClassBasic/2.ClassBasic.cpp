@@ -14,6 +14,9 @@ private:
 	string m_strColor;
 	int m_nSpeed;
 	E_GEAR m_eGear;
+	//정적멤버 변수의 선언
+	//객체가 생성되기전에 접근가능 멤버변수. 모든객체가 공유한다.
+	static int m_nCount; //자동차 생산 수
 	//생성자: 메모리가 할당될때 호출되는 함수. 
 	//CCar()//기본생성자: 매개변수가 없는 생성자. 객체의 매개변수를 지정하지않고 생성할때는 반드시 필요하다.
 	//{
@@ -22,6 +25,8 @@ private:
 	//	m_eGear = E_GEAR::N;
 	//}
 public:
+	//객체가 생성되기전에 접근가능한 멤버 함수
+	static int GetCount() { return m_nCount; }
 	//Getter: 멤버변수의 값을 가져오는 함수
 	string GetColor() { return m_strColor; } //자동차의 색상은 관찰가능하지만, 변경하는 것은 불법이다.
 	int GetSpeed() { return m_nSpeed; } //속도는 누구나 관찰 할 수 있다.
@@ -33,7 +38,8 @@ public:
 	//디폴트매개변수변수를 이용하여 디폴트생성자와 같은 역할을 하도록할수있다.
 	CCar(string color = "gray", E_GEAR gear = E_GEAR::N, int speed = 0)//매개변수가있는 생성자: 매개변수를 지정하면, 반드시 초기화해야만 메모리를 할당되게 만들수있다.
 	{
-		cout << "CCar[" << this << "]:" << color << endl;
+		m_nCount++;
+		cout << "CCar[" << this << "/"<<m_nCount<<"]:" << color << endl;
 		m_strColor = color;
 		m_eGear = gear;
 		m_nSpeed = speed;
@@ -41,16 +47,18 @@ public:
 	//복사생성자: 객체가 초기화될때 같은 객체를 복사하면 호출되는 함수 
 	CCar(CCar& car)
 	{
+		m_nCount++;
 		//memcpy_s(this, sizeof(CCar), &car, sizeof(CCar)); //일부 컴퓨터에서 문제가 발생
 		m_strColor = car.m_strColor;
 		m_nSpeed = car.m_nSpeed;
 		m_eGear = car.m_eGear;
-		cout << "Car Copy[" << this << "]:" << m_strColor << endl;
+		cout << "Car Copy[" << this << "/" << m_nCount << "]:" << m_strColor << endl;
 	}
 	//소멸자: 할당된 메모리가 소멸될때 호출되는 함수
 	~CCar()
 	{
-		cout << "~CCar[" << this << "]:" << m_strColor << endl;
+		m_nCount--;
+		cout << "~CCar[" << this << "/" << m_nCount << "]:" << m_strColor << endl;
 	}
 	void Accel()
 	{
@@ -69,6 +77,12 @@ public:
 		cout << "Gear:" << m_eGear << endl;
 	}
 };
+//전역변수는 언제 소멸되는가?
+//1.프로그램 종료시
+//2.함수 종료시
+// 
+//정적멤버변수는 모든객체가 공유해야하기때문에 전역변수로 만든다.
+int CCar::m_nCount = 0; //정적멤버변수의 정의
 
 void SwapCarVal(CCar a, CCar b)
 {
@@ -123,11 +137,54 @@ void CarTestMain()
 	cCar.Display();
 	cout << "CarTestMain() end" << endl;
 }
+//물건을 주문하고 받는다.
+//1.매장을 방문하고 시승을한다.
+//2.계약서를 작성한다.
+//3.공장에서 자동차를 생산한다.
+//4.자동차를 출고받는다.
+//5.자동차를 운행한다.
+void BuyCarMain()
+{
+	string strInputColor;
+	cout << "Color? ";
+	cin >> strInputColor;
+	cout << "### Production Car ###" << endl;
+	CCar cCar(strInputColor);
+	cout << "### Deliver a Car ###" << endl;
+
+	int nControl;
+	do
+	{
+		cout << "ControlCar(0: Gear 1: Aceel 2: Break):";
+		cin >> nControl;
+		switch (nControl)
+		{
+		case 0: //기어조작
+			int nGear;
+			cout << "SetGear" << endl;
+			cin >> nGear;
+			cCar.SetGear((CCar::E_GEAR)nGear);
+			break;
+		case 1: //가속
+			cCar.Accel();
+			break;
+		case 2: //브레이크
+			cCar.Break();
+			break;
+		default:
+			nControl = -1;
+			break;
+		}
+		cCar.Display();
+	} 	while (nControl != -1);
+}
 
 void main()
 {
 	cout << "main() start" << endl;
+	cout << "Car:" << CCar::GetCount() << endl;
 	//CarTestMain();
 	SwapTestMain();
+	cout << "Car:" << CCar::GetCount() << endl;
 	cout << "main() end" << endl;
 }
