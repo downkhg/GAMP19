@@ -14,17 +14,10 @@
       <FileName>InheritaceCar.h</FileName>
     </TypeIdentifier>
   </Class>
-  <Class Name="Inheritance::CAutoBike">
+  <Class Name="Inheritance::CEnginer">
     <Position X="4.5" Y="4" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAAAAAAAAQAAAAAEAAAAACAAAAAAAAAAAAAAAAAAAAA=</HashCode>
-      <FileName>InheritaceCar.h</FileName>
-    </TypeIdentifier>
-  </Class>
-  <Class Name="Inheritance::CBus">
-    <Position X="4.5" Y="6.25" Width="1.5" />
-    <TypeIdentifier>
-      <HashCode>AAEAAAAAAAAAAAAAAAAAAAAAAAAAAgAAAAAAAAAAAAA=</HashCode>
+      <HashCode>AAAgAAAAAAAAAAIEAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
       <FileName>InheritaceCar.h</FileName>
     </TypeIdentifier>
   </Class>
