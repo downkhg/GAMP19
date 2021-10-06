@@ -78,33 +78,7 @@ namespace Inheritance
 	};
 
 
-	/*class CAutoBike : public CVihicle
-	{
-		int m_nEngine;
-	public:
-		CAutoBike(int seat, int engine):CVihicle(seat)
-		{
-			m_nEngine = engine;
-			cout << "CAutoBike[" << this << "]" << endl;
-		}
-		~CAutoBike()
-		{
-			cout << "~CAutoBike[" << this << "]" << endl;
-		}
-	};*/
-
-	//class CBus : public CEnginer
-	//{
-	//public:
-	//	CBus(int seat, int engine):CEnginer(seat, engine)
-	//	{
-	//		cout << "CBus[" << this << "]" << endl;
-	//	}
-	//	~CBus()
-	//	{
-	//		cout << "~CBus[" << this << "]" << endl;
-	//	}
-	//};
+	
 	//계층상속: 부모가 있는 클래스를 상속받는것.
 	class CTruck : public CEnginer
 	{

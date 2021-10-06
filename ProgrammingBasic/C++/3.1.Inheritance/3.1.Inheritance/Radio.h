@@ -47,7 +47,8 @@ namespace Normal
 }
 
 using namespace Normal;
-
+//상속을 받은 경우 부모의 멤버가 변경되면 자식도 영향을 받는다.
+//부모가 변경되어도 자식이 변경되는것을 원하지않을때는 문제가 된다.
 namespace Inheritance
 {
 	class CRadio : public CSpeaker, CAntena
@@ -62,7 +63,7 @@ namespace Inheritance
 		CRadio cRadio;
 	}
 }
-
+//부모의 멤버가 변경되었다고해서 자식에게 영향을 주지는 않을 수도 있다.
 namespace HasA_InClass
 {
 	class CRadio
@@ -148,7 +149,8 @@ namespace HasA_InRef
 			return m_pAntena->GetFrequency();
 		}
 	};
-
+	//객체가 내부에 포함되지않으므로 재활용이 가능하다.
+	//참조하는 클래스를 확장할때 상속을 하면 본래 기능은 영향을 주지않는다.
 	void RadioMain()
 	{
 		CSpeaker cSpeaker;
