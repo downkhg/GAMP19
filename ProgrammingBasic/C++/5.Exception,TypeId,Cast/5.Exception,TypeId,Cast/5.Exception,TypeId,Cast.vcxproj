@@ -18,12 +18,16 @@
       <Platform>x64</Platform>
     </ProjectConfiguration>
   </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="5.Templet.cpp" />
+  </ItemGroup>
   <PropertyGroup Label="Globals">
     <VCProjectVersion>16.0</VCProjectVersion>
     <Keyword>Win32Proj</Keyword>
-    <ProjectGuid>{237eadb5-9a20-4124-b0cd-eb8d48f4a3e5}</ProjectGuid>
-    <RootNamespace>My31Inheritance</RootNamespace>
+    <ProjectGuid>{9985d68f-7949-40fc-a582-e3313c71fc65}</ProjectGuid>
+    <RootNamespace>My5ExceptionTypeIdCast</RootNamespace>
     <WindowsTargetPlatformVersion>10.0</WindowsTargetPlatformVersion>
+    <ProjectName>5.Templet</ProjectName>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
@@ -138,20 +142,6 @@
       <GenerateDebugInformation>true</GenerateDebugInformation>
     </Link>
   </ItemDefinitionGroup>
-  <ItemGroup>
-    <ClCompile Include="3.1.Inheritance.cpp" />
-  </ItemGroup>
-  <ItemGroup>
-    <ClInclude Include="Car.h" />
-    <ClInclude Include="ClassAcessType.h" />
-    <ClInclude Include="InheritaceCar.h" />
-    <ClInclude Include="Radio.h" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Car.cd" />
-    <None Include="InheritanceCar.cd" />
-    <None Include="Radio.cd" />
-  </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
   </ImportGroup>

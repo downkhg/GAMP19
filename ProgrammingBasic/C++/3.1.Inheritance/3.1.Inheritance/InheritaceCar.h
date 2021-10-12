@@ -38,6 +38,7 @@ namespace Inheritance
 
 	class CBike : public CVihicle
 	{
+	protected:
 	public:
 		CBike(int seat):CVihicle(seat)
 		{

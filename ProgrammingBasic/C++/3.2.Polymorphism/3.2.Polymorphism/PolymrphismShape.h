@@ -34,15 +34,15 @@ namespace Polymrphism
 			cout << "Shape[" << this << "]" << endl;
 		}
 		//가상소멸자: 소멸자는 순수가상함수로 만들어도 디폴트 소멸자가 생성되므로 실수를 막을수없다.
-		virtual ~Shape() = 0
+		virtual ~Shape()// = 0
 		{
 			cout << "~Shape[" << this << "]" << endl;
 		}
-		void Draw()
+		//void Draw()
 		//오버로딩: 함수의 매개변수의 갯수나 타입이 다른 함수를 같은이름으로 정의하는것.
 		//오버라이딩: 가상함수를 만들어 부모의포인터에서 자식객체의 함수를 호출하는것.
 		//virtual void Draw() //가상함수: 부모의 포인터에서 자식의 함수에 접근하기위해서 사용한다.
-		//virtual void Draw() = 0 //순수가상함수: 이 함수를 자식에서 정의하지않으면 컴파일오류가 발생한다.
+		virtual void Draw() = 0 //순수가상함수: 이 함수를 자식에서 정의하지않으면 컴파일오류가 발생한다.
 		{
 			cout << "Shape[" << this << "]::Draw()" << endl;
 		};
@@ -107,14 +107,14 @@ namespace Polymrphism
 		{
 			cout << "~RectAangle[" << this << "]()" << endl;
 		}
-		/*void Draw()
+		void Draw() override
 		{
 			cout << "RectAangle[" << this << "]::Draw()" << endl;
 			vTL.Print("TopLeft:");
 			vTR.Print("TopRight:");
 			vBL.Print("BottomLeft:");
 			vBR.Print("BottomRight:");
-		}*/
+		}
 	};
 
 	//부모의 부분과 자식의 부분은 메모리가 다르다. 

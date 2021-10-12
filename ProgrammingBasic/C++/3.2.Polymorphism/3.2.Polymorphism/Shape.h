@@ -129,11 +129,11 @@ namespace Inheritance
 		arrShape[1] = (void*)new RectAangle();
 		arrShape[2] = (void*)new TriAngle();
 
-		//for (int i = 0; i < 3; i++)
-		//	(Shape*)arrShape[i]->Draw();
+		for (int i = 0; i < 3; i++)
+			((Shape*)arrShape[i])->Draw();
 		((Circle*)arrShape[0])->Draw();
-		((RectAangle*)(arrShape[0]))->Draw();
-		((TriAngle*)(arrShape[0]))->Draw();
+		((RectAangle*)(arrShape[1]))->Draw();
+		((TriAngle*)(arrShape[2]))->Draw();
 	}
 	//부모클래스의 함수에 virtual을 붙이면 가상함수가되고,
 	//부모포인터에서도 자식의 같은 이름의함수를 호출가능해진다.

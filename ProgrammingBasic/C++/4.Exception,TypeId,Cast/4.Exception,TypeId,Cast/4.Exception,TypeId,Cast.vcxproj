@@ -21,8 +21,8 @@
   <PropertyGroup Label="Globals">
     <VCProjectVersion>16.0</VCProjectVersion>
     <Keyword>Win32Proj</Keyword>
-    <ProjectGuid>{237eadb5-9a20-4124-b0cd-eb8d48f4a3e5}</ProjectGuid>
-    <RootNamespace>My31Inheritance</RootNamespace>
+    <ProjectGuid>{93595964-e663-4327-8ee3-b15401674332}</ProjectGuid>
+    <RootNamespace>My4ExceptionTypeIdCast</RootNamespace>
     <WindowsTargetPlatformVersion>10.0</WindowsTargetPlatformVersion>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
@@ -139,18 +139,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="3.1.Inheritance.cpp" />
-  </ItemGroup>
-  <ItemGroup>
-    <ClInclude Include="Car.h" />
-    <ClInclude Include="ClassAcessType.h" />
-    <ClInclude Include="InheritaceCar.h" />
-    <ClInclude Include="Radio.h" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Car.cd" />
-    <None Include="InheritanceCar.cd" />
-    <None Include="Radio.cd" />
+    <ClCompile Include="4.1.Exception,TypeId,Cast.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

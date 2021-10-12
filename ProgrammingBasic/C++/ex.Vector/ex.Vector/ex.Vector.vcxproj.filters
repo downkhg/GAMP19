@@ -14,34 +14,4 @@
       <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
     </Filter>
   </ItemGroup>
-  <ItemGroup>
-    <ClCompile Include="3.1.Inheritance.cpp">
-      <Filter>소스 파일</Filter>
-    </ClCompile>
-  </ItemGroup>
-  <ItemGroup>
-    <ClInclude Include="Car.h">
-      <Filter>소스 파일</Filter>
-    </ClInclude>
-    <ClInclude Include="InheritaceCar.h">
-      <Filter>소스 파일</Filter>
-    </ClInclude>
-    <ClInclude Include="Radio.h">
-      <Filter>소스 파일</Filter>
-    </ClInclude>
-    <ClInclude Include="ClassAcessType.h">
-      <Filter>소스 파일</Filter>
-    </ClInclude>
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="InheritanceCar.cd">
-      <Filter>리소스 파일</Filter>
-    </None>
-    <None Include="Car.cd">
-      <Filter>리소스 파일</Filter>
-    </None>
-    <None Include="Radio.cd">
-      <Filter>리소스 파일</Filter>
-    </None>
-  </ItemGroup>
 </Project>

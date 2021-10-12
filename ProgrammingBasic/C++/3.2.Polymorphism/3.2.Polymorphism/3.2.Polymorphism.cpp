@@ -6,11 +6,11 @@ using namespace std;
 
 void main()
 {
-	Inheritance::ShapeMain();
-	Inheritance::RuntimeShapeDrawMain();
-	Inheritance::PolymrphismShapeDrawMain();
+	//Inheritance::ShapeMain();
+	//Inheritance::RuntimeShapeDrawMain();
+	//Inheritance::PolymrphismShapeDrawMain();
 
 	Polymrphism::ShapeMain();
-	Polymrphism::RuntimeShapeDrawMain();
-	Polymrphism::PolymrphismShapeDrawMain();
+	//Polymrphism::RuntimeShapeDrawMain();
+	//Polymrphism::PolymrphismShapeDrawMain();
 }
