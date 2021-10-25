@@ -1,0 +1,32 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Class Name="Cookie">
+    <Position X="2.25" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAABAAAAAACAIAAEAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Deco.cpp</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="MilkCookie">
+    <Position X="3.25" Y="3" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>ACAAAAAAAAAAAAAAAAAAIAAAAEAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Deco.cpp</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="ChocoCookie">
+    <Position X="1" Y="3" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAgAAAAAAAAAAACAAgAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Deco.cpp</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="AmondChocoCookie">
+    <Position X="1" Y="5.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAIAEAAAAAAAAAABAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Deco.cpp</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Font Name="맑은 고딕" Size="9" />
+</ClassDiagram>
