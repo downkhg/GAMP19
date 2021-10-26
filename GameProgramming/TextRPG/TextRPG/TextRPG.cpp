@@ -82,11 +82,11 @@ class ItemManager {
 	vector<Item> m_listItems;
 public:
 	enum E_ITEM_LIST { WOOD_SOWRD, BONE_SOWRD, WOOD_ARMOR, BONE_AMROR, WOOD_RING, BONE_RING, HP_POTION, MP_POTION, STONE, BOOM };
-	
 	ItemManager()
 	{
 
 	}
+
 
 	void Init()
 	{
@@ -160,9 +160,9 @@ public:
 		else
 			cout << " Save Failed!" << endl;
 	}
-	Item GetItem(int idx)
+	Item* GetItem(int idx)
 	{
-		return m_listItems[idx];
+		return &m_listItems[idx];
 	}
 };
 
@@ -173,19 +173,20 @@ class Player {
 	int m_nExp;
 	int m_nGold;
 
-	vector<Item> m_listIventory;
-	vector<Item> m_listEqument;
+	vector<Item*> m_listIventory;
+	vector<Item*> m_listEqument;
 public:
 	Player()
 	{
 		m_listEqument.resize(3);
+		m_nGold = 9999999;
 	}
 
-	void SetIventory(Item item)
+	void SetIventory(Item* item)
 	{
 		m_listIventory.push_back(item);
 	}
-	Item GetIventoryIdx(int idx)
+	Item* GetIventoryIdx(int idx)
 	{
 		return m_listIventory[idx];
 	}
@@ -196,14 +197,14 @@ public:
 
 	bool UseItem(int idx)
 	{
-		Item cItem = GetIventoryIdx(idx);
+		Item* pItem = GetIventoryIdx(idx);
 
-		if (cItem.eItemKind == Item::E_ITEM_KIND::THROW)
+		if (pItem->eItemKind == Item::E_ITEM_KIND::THROW)
 			return false;
 
-		int nIdx = cItem.eItemKind;
-		m_listEqument[nIdx] = cItem;
-		m_sStatus = m_sStatus + cItem.sFuction;
+		int nIdx = pItem->eItemKind;
+		m_listEqument[nIdx] = pItem;
+		m_sStatus = m_sStatus + pItem->sFuction;
 		DeleteIventory(idx);
 
 		return true;
@@ -211,9 +212,9 @@ public:
 
 	void ReleaseEqument(int idx)
 	{
-		Item cItem = m_listEqument[idx];
-		m_sStatus = m_sStatus - cItem.sFuction;
-		SetIventory(cItem);
+		Item* pItem = m_listEqument[idx];
+		m_sStatus = m_sStatus - pItem->sFuction;
+		SetIventory(pItem);
 	}
 
 	void Set(string strName, int _hp, int _mp, int _str, int _int, int _def, int _exp)
@@ -244,11 +245,11 @@ public:
 
 	bool Buy(Player& target, int idx)
 	{
-		Item item = target.GetIventoryIdx(idx);
-		if (item.nGold <= m_nGold)
+		Item* item = target.GetIventoryIdx(idx);
+		if (item->nGold <= m_nGold)
 		{
 			SetIventory(item);
-			m_nGold -= item.nGold;
+			m_nGold -= item->nGold;
 			return true;
 		}
 		return false;
@@ -256,9 +257,9 @@ public:
 
 	void Sell(int idx)
 	{
-		Item item = GetIventoryIdx(idx);
+		Item* item = GetIventoryIdx(idx);
 		DeleteIventory(idx);
-		m_nGold += item.nGold;
+		m_nGold += item->nGold;
 	}
 
 	bool LvUp()
@@ -283,15 +284,17 @@ public:
 
 	void Show()
 	{
-		cout << "######### " << m_strName << "######### " << endl;
+		cout << "######### " << m_strName << " #########" << endl;
 		m_sStatus.Show();
 		cout << "######### Equment #########" << endl;
 		for (int i = 0; i < m_listEqument.size(); i++)
-			cout << i << ":" << m_listEqument[i].strName << endl;
-		cout << "######### Inventory ######### " << endl;
+			if (m_listEqument[i])
+				cout << i << ":" << m_listEqument[i]->strName << endl;
+			else
+				cout << i << ": null" << endl;
+		cout << "######### Inventory: " << m_nGold << " ######### " << endl;
 		for (int i = 0; i < m_listIventory.size(); i++)
-			cout << i << ":" << m_listIventory[i].strName << endl;
-		cout << "######### Gold:" << m_nGold << " ######### " << endl;
+			cout << i << ":" << m_listIventory[i]->strName << endl;
 	}
 };
 //상점을 플레이를 이용하여 만들어보기. //사기,팔기
@@ -327,7 +330,7 @@ void main()
 
 	cMonster.Set("Slime", 100, 100, 20, 10, 10, 100);
 	cMonster.SetIventory(cItemManager.GetItem(ItemManager::E_ITEM_LIST::WOOD_SOWRD));
-	//cMonster.SetIventory(Item(Item::E_ITEM_KIND::WEAPON, "목검", "데미지 증가", Status(0, 0, 10), 100));
+	//cMonster.SetIventory(Item(Item::E_ITEM_KIND::WEAPON, "목검", "데미지 증가", 0, 0, 10), 100));
 
 	while (eStage != E_STAGE::EXIT)
 	{
