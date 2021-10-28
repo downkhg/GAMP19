@@ -13,6 +13,9 @@
       <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
       <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
     </Filter>
+    <Filter Include="RPG">
+      <UniqueIdentifier>{2560e64d-212f-41ae-aa8c-5df1bae27377}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="MFCRPG.h">
@@ -33,6 +36,21 @@
     <ClInclude Include="pch.h">
       <Filter>헤더 파일</Filter>
     </ClInclude>
+    <ClInclude Include="ItemManager.h">
+      <Filter>RPG</Filter>
+    </ClInclude>
+    <ClInclude Include="Player.h">
+      <Filter>RPG</Filter>
+    </ClInclude>
+    <ClInclude Include="SkillManager.h">
+      <Filter>RPG</Filter>
+    </ClInclude>
+    <ClInclude Include="EffectManager.h">
+      <Filter>RPG</Filter>
+    </ClInclude>
+    <ClInclude Include="GameManager.h">
+      <Filter>RPG</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="MFCRPG.cpp">
@@ -43,6 +61,21 @@
     </ClCompile>
     <ClCompile Include="pch.cpp">
       <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="GameManager.cpp">
+      <Filter>RPG</Filter>
+    </ClCompile>
+    <ClCompile Include="Player.cpp">
+      <Filter>RPG</Filter>
+    </ClCompile>
+    <ClCompile Include="SkillManager.cpp">
+      <Filter>RPG</Filter>
+    </ClCompile>
+    <ClCompile Include="EffectManager.cpp">
+      <Filter>RPG</Filter>
+    </ClCompile>
+    <ClCompile Include="ItemManager.cpp">
+      <Filter>RPG</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

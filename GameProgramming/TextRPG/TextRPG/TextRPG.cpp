@@ -432,7 +432,7 @@ public:
 		m_cPlayer.SetSkill(m_cSkillManager.GetSkill(1));
 		m_cPlayer.SetSkill(m_cSkillManager.GetSkill(0));
 		m_cPlayer.SetSkill(m_cSkillManager.GetSkill(2));
-		
+
 		m_eStage = E_STAGE::TOWN;
 	}
 	void EventInvetory()
