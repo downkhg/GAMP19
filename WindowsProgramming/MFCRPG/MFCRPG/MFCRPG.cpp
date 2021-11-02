@@ -6,6 +6,7 @@
 #include "framework.h"
 #include "MFCRPG.h"
 #include "MFCRPGDlg.h"
+#include "MFCBattilDlg.h"
 
 #ifdef _DEBUG
 #define new DEBUG_NEW
@@ -40,6 +41,7 @@ CMFCRPGApp theApp;
 
 BOOL CMFCRPGApp::InitInstance()
 {
+	AfxOleInit();
 	// 애플리케이션 매니페스트가 ComCtl32.dll 버전 6 이상을 사용하여 비주얼 스타일을
 	// 사용하도록 지정하는 경우, Windows XP 상에서 반드시 InitCommonControlsEx()가 필요합니다.
 	// InitCommonControlsEx()를 사용하지 않으면 창을 만들 수 없습니다.
@@ -72,7 +74,10 @@ BOOL CMFCRPGApp::InitInstance()
 	SetRegistryKey(_T("로컬 애플리케이션 마법사에서 생성된 애플리케이션"));
 
 	CMFCRPGDlg dlg;
+	dlg.m_pGameManager;
+	MFCBattilDlg dlgBattle;
 	m_pMainWnd = &dlg;
+	//m_pMainWnd = &dlgBattle;
 	INT_PTR nResponse = dlg.DoModal();
 	if (nResponse == IDOK)
 	{

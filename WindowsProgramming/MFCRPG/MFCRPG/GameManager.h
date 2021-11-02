@@ -1,5 +1,6 @@
 #pragma once
 #include "pch.h"
+#include <afx.h>
 
 class GameManager
 {
@@ -11,7 +12,7 @@ public:
 
 	void Release();
 
-	void EventCreate();
+	void EventCreate(CString name, Status status);
 	void EventInvetory();
 	void EventShop();
 	void EventTown();

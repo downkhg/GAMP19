@@ -1,7 +1,7 @@
 #pragma once
 
 #include <iostream>
-#include <string>
+#include <afx.h>
 #include "Player.h"
 
 using namespace std;
@@ -10,15 +10,15 @@ class Item {
 public:
 	enum E_ITEM_KIND { WEAPON, ARMOR, ACC, POTION, THROW };
 	E_ITEM_KIND eItemKind;
-	string strName;
-	string strComment;
+	CString strName;
+	CString strComment;
 	Status sFuction;
 	int nGold;
-	Item(E_ITEM_KIND kind = THROW, string name = "none", string comment = "none", Status status = Status(), int gold = 0)
+	Item(E_ITEM_KIND kind = THROW, CString name = _T("none"), CString comment = _T("none"), Status status = Status(), int gold = 0)
 	{
 		Set(kind, name, comment, status, gold);
 	}
-	void Set(E_ITEM_KIND kind, string name, string comment, Status status, int gold)
+	void Set(E_ITEM_KIND kind, CString name, CString comment, Status status, int gold)
 	{
 		eItemKind = kind;
 		strName = name;

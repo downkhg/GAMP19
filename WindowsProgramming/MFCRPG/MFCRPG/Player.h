@@ -1,7 +1,7 @@
 #pragma once
 #include <iostream>
 #include <vector>
-#include <string>
+#include <afx.h>
 
 using namespace std;
 
@@ -63,7 +63,7 @@ struct Status {
 };
 
 class Player {
-	string m_strName;
+	CString m_strName;
 	Status m_sStatus;
 	int m_nLv;
 	int m_nExp;
@@ -75,7 +75,7 @@ class Player {
 public:
 	Player();
 
-	string& GetName() { return m_strName; }
+	CString& GetName() { return m_strName; }
 	Status& GetStatus() { return m_sStatus; };
 	int GetLv() { return m_nLv; };
 	int GetExp() { return m_nExp; };
@@ -93,7 +93,8 @@ public:
 
 	void ReleaseEqument(int idx);
 
-	void Set(string strName, int _hp, int _mp, int _str, int _int, int _def, int _exp);
+	void Set(CString strName, int _hp, int _mp, int _str, int _int, int _def, int _exp);
+	void Set(CString strName, Status status, int _exp);
 	void Attack(Player& taget);
 	void StillItem(Player& taget);
 	bool Buy(Player& target, int idx);

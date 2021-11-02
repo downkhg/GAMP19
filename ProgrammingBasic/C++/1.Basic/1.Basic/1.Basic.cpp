@@ -116,6 +116,6 @@ void main()
 	//cout << "Hello Wolrd!" << std::endl;//\n:ÁÙ¹Ù²Þ¹®ÀÚ
 	//RefTestMain();
 	//StringTestMain();
-	//ChararrayTestMain();
-	HangManMain();
+	ChararrayTestMain();
+	//HangManMain();
 }

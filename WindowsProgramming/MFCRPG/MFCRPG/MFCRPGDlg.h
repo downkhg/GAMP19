@@ -38,7 +38,12 @@ public:
 	afx_msg void OnDeltaposSpin1(NMHDR* pNMHDR, LRESULT* pResult);
 	CStatic m_staticBonus;
 
+
 	//모델: 편집될 데이터
-	int m_nHP = 10;
+	//int m_nHP = 10;
+	Status m_sStatus;
 	int m_nBonus = 20;
+
+	GameManager* m_pGameManager;
+	afx_msg void OnBnClickedOk();
 };

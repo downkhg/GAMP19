@@ -50,7 +50,7 @@ void Player::ReleaseEqument(int idx)
 	SetIventory(pItem);
 }
 
-void Player::Set(string strName, int _hp, int _mp, int _str, int _int, int _def, int _exp)
+void Player::Set(CString strName, int _hp, int _mp, int _str, int _int, int _def, int _exp)
 {
 	m_strName = strName;
 	m_sStatus.nHP = _hp;
@@ -58,6 +58,13 @@ void Player::Set(string strName, int _hp, int _mp, int _str, int _int, int _def,
 	m_sStatus.nStr = _str;
 	m_sStatus.nInt = _int;
 	m_sStatus.nDef = _def;
+	m_nExp = _exp;
+	m_nLv = 1;
+}
+void Player::Set(CString strName, Status status, int _exp)
+{
+	m_strName = strName;
+	m_sStatus = status;
 	m_nExp = _exp;
 	m_nLv = 1;
 }

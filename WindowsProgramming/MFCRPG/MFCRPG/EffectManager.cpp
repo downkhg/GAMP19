@@ -4,7 +4,7 @@ using namespace std;
 void HillEffect::Use(Player& caster, Player& target)
 {
 	target.GetStatus().nHP += caster.GetStatus().nInt;
-	cout << target.GetName().c_str() << "+ HP:"<< caster.GetStatus().nInt << endl;
+	cout << target.GetName()<< "+ HP:"<< caster.GetStatus().nInt << endl;
 }
 
 void EffectManager::Init()

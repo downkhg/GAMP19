@@ -70,6 +70,7 @@ BEGIN_MESSAGE_MAP(CMFCRPGDlg, CDialogEx)
 	ON_WM_PAINT()
 	ON_WM_QUERYDRAGICON()
 	ON_NOTIFY(UDN_DELTAPOS, IDC_SPIN1, &CMFCRPGDlg::OnDeltaposSpin1)
+	ON_BN_CLICKED(IDOK, &CMFCRPGDlg::OnBnClickedOk)
 END_MESSAGE_MAP()
 
 
@@ -110,10 +111,13 @@ BOOL CMFCRPGDlg::OnInitDialog()
 	m_comboClass.AddString(_T("마법사"));
 
 	CString strMsg;
-	strMsg.Format(_T("%d"), m_nHP);
+	strMsg.Format(_T("%d"), m_sStatus.nHP);
 	m_editHP.SetWindowTextW(strMsg);
 	strMsg.Format(_T("보너스포인트: %d"), m_nBonus);
 	m_staticBonus.SetWindowTextW(strMsg);
+
+	m_pGameManager = new GameManager();
+	m_pGameManager->Init();
 
 	return TRUE;  // 포커스를 컨트롤에 설정하지 않으면 TRUE를 반환합니다.
 }
@@ -176,20 +180,29 @@ void CMFCRPGDlg::OnDeltaposSpin1(NMHDR* pNMHDR, LRESULT* pResult)
 	if (pNMUpDown->iDelta < 0)
 	{
 		m_nBonus--;
-		m_nHP++;
+		m_sStatus.nHP++;
 	}
 	else
 	{
 		m_nBonus++;
-		m_nHP--;
+		m_sStatus.nHP--;
 	}
 
 	//통지: 변경된 모델의값을 뷰에 전달한다.(GUI)
 	CString strMsg;
-	strMsg.Format(_T("%d"), m_nHP);
+	strMsg.Format(_T("%d"), m_sStatus.nHP);
 	m_editHP.SetWindowTextW(strMsg);
 	strMsg.Format(_T("보너스포인트: %d"), m_nBonus);
 	m_staticBonus.SetWindowTextW(strMsg);
 
 	*pResult = 0;
+}
+
+
+void CMFCRPGDlg::OnBnClickedOk()
+{
+	// TODO: 여기에 컨트롤 알림 처리기 코드를 추가합니다.
+	CString name;
+	m_editName.GetWindowTextW(name);
+	m_pGameManager->EventCreate(name, m_sStatus);
 }

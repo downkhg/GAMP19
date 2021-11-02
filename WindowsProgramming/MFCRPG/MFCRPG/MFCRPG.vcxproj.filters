@@ -51,6 +51,9 @@
     <ClInclude Include="GameManager.h">
       <Filter>RPG</Filter>
     </ClInclude>
+    <ClInclude Include="MFCBattilDlg.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="MFCRPG.cpp">
@@ -76,6 +79,9 @@
     </ClCompile>
     <ClCompile Include="ItemManager.cpp">
       <Filter>RPG</Filter>
+    </ClCompile>
+    <ClCompile Include="MFCBattilDlg.cpp">
+      <Filter>소스 파일</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

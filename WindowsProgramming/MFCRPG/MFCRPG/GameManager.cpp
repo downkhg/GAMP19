@@ -1,7 +1,7 @@
 #include "pch.h"
 #include <iostream>
-#include <string>
 #include <vector>
+#include <afx.h>
 
 using namespace std;
 
@@ -21,7 +21,7 @@ void GameManager::Init()
 	m_cShop.SetIventory(m_cItemManager.GetItem(ItemManager::E_ITEM_LIST::STONE));
 	m_cShop.SetIventory(m_cItemManager.GetItem(ItemManager::E_ITEM_LIST::BOOM));
 
-	m_cMonster.Set("Slime", 100, 100, 20, 10, 10, 100);
+	m_cMonster.Set(_T("Slime"), 100, 100, 20, 10, 10, 100);
 	m_cMonster.SetIventory(m_cItemManager.GetItem(ItemManager::E_ITEM_LIST::WOOD_SOWRD));
 
 	Skill* pHill = m_pSkillManager->GetSkill(0);
@@ -33,12 +33,9 @@ void GameManager::Release()
 	delete m_pSkillManager;
 }
 
-void GameManager::EventCreate()
+void GameManager::EventCreate(CString name, Status status)
 {
-	string name;
-	cout << "케릭터 이름을 입력하세요!:";
-	cin >> name;
-	m_cPlayer.Set(name, 100, 100, 20, 10, 10, 0);
+	m_cPlayer.Set(name, status, 0);
 	m_eStage = E_STAGE::TOWN;
 }
 void GameManager::EventInvetory()
@@ -120,13 +117,13 @@ void GameManager::EventFiled()
 	switch (nSelect)
 	{
 	case E_MONSTER::SILME:
-		m_cMonster.Set("Slime", 100, 100, 20, 10, 10, 100);
+		m_cMonster.Set(_T("Slime"), 100, 100, 20, 10, 10, 100);
 		break;
 	case E_MONSTER::SKELETON:
-		m_cMonster.Set("Skeleton", 200, 200, 30, 10, 10, 100);
+		m_cMonster.Set(_T("Skeleton"), 200, 200, 30, 10, 10, 100);
 		break;
 	case E_MONSTER::BOSS:
-		m_cMonster.Set("Boss", 300, 100, 50, 10, 10, 100);
+		m_cMonster.Set(_T("Boss"), 300, 100, 50, 10, 10, 100);
 		break;
 	}
 	m_eStage = E_STAGE::BATTLE;
@@ -160,7 +157,7 @@ void GameManager::Update()
 	switch (m_eStage)
 	{
 	case E_STAGE::CRATE:
-		EventCreate();
+		//EventCreate();
 		break;
 	case E_STAGE::IVNETORY:
 		EventInvetory();
