@@ -18,14 +18,14 @@ enum WM_MSG { CREATE, COMMOND, PAINT, DESTROY, MAX };
 string strMSG[MAX] = { "CREATE","COMMOND","PAINT","DESTROY" };
 
 bool g_bLoop = true;
-queue<int> queMsg;
+//queue<int> queMsg;
 
 //arg를 통해 외부의 데이터값을 받을수있다.
 unsigned int WINAPI WndProc(void* arg)
 {
 	cout << "arg:" << arg << endl;
-	int* pData = (int*)arg;
-
+	queue<int>* pQueMsg = (queue<int>*)arg;
+	queue<int>& queMsg = *pQueMsg;
 	while (g_bLoop)
 	{
 		cout << "QueSize:" << queMsg.size() << endl;
@@ -69,7 +69,7 @@ int main()
 {
 	HANDLE hThread = NULL;
 	DWORD dwThreadID = NULL;
-
+	queue<int> queMsg;
 	int nMSG = CREATE;
 	queMsg.push(nMSG);
 	cout << "Msg:" << &nMSG << endl;
@@ -80,7 +80,7 @@ int main()
 	//콜백함수: 프로세스내에서 호출하지않고, 외부에서 호출하도록 하는 함수.
 	hThread = (HANDLE)_beginthreadex(NULL, 0,
 		WndProc,
-		(void*)&nMSG, 0,
+		(void*)&queMsg, 0,
 		(unsigned int*)dwThreadID);
 
 	while (g_bLoop)
