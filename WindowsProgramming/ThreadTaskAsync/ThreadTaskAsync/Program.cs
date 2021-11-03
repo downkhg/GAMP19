@@ -72,8 +72,8 @@ namespace ThreadTaskAsync
 
         static void Main(string[] args)
         {
-            ThreadTestMain();
-            //TaskTestMain();
+            //ThreadTestMain();
+            TaskTestMain();
         }
     }
 }
