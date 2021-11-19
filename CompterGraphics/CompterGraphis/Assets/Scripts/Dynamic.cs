@@ -21,6 +21,7 @@ public class Dynamic : MonoBehaviour
         if(Input.GetKey(KeyCode.UpArrow))
         {
             transform.Translate(Vector3.forward * Time.deltaTime);
+            //transform.position = transform.position + Vector3.forward * Time.deltaTime;
             //transform.position += Vector3.forward * Time.deltaTime;
         }
         if (Input.GetKey(KeyCode.DownArrow))

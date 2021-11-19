@@ -22,8 +22,8 @@ public class RotatTarger : MonoBehaviour
         Vector3 vDir = vDist.normalized;
         Quaternion qRot = Quaternion.Euler(Vector3.up);
         Vector3 vRotDir = qRot * vDir;
-
         vCamPos = vTargetPos + vRotDir * fDist;
+        //vCamPos = vTargetPos + vDir * fDist;
 
         transform.LookAt(objTarget.transform);
         this.transform.position = vCamPos;
