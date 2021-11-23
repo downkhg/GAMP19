@@ -9,7 +9,7 @@ public class Controller : MonoBehaviour
 
     public void MoveProcess(Vector3 dir, float speed)
     {
-        transform.Translate(Vector3.forward * speed * Time.deltaTime);
+        transform.Translate(dir * speed * Time.deltaTime);
     }
 
     public void RotateProcess(Vector3 axis, float angle)
