@@ -70,13 +70,59 @@ public class AIController : Controller
             {
                 if (collider.tag == "Player")
                 {
-                    m_objTarget = collider.gameObject;
-                    return true;
+                    if (ArcColCheck(collider, 120, transform.forward))
+                    {
+                        if (RaycastWall() == false)
+                        {
+                            m_objTarget = collider.gameObject;
+                            return true;
+                        }
+                    }
                 }
             }
         }
 
         m_objTarget = null;
+        return false;
+    }
+
+    public bool ArcColCheck(Collider collider, float angle, Vector3 forword)
+    {
+        Vector3 vTargetPos = collider.transform.position;
+        Vector3 vPos = this.transform.position;
+
+        Vector3 vTargetToDist = vTargetPos - vPos;
+        float fAngle = Vector3.Angle(forword, vTargetToDist);
+        float fHalfAngle = angle * 0.5f;
+
+        Debug.DrawLine(vPos, vPos + forword * m_fSite, Color.blue);
+        Quaternion qRotRight = Quaternion.Euler(Vector3.up * fHalfAngle);
+        Vector3 vRightDir = qRotRight * forword;
+        Debug.DrawLine(vPos, vPos + vRightDir * m_fSite, Color.red);
+        Quaternion qRotLeft = Quaternion.Euler(Vector3.down * fHalfAngle);
+        Vector3 vLeftDir = qRotLeft * forword;
+        Debug.DrawLine(vPos, vPos + vLeftDir * m_fSite, Color.red);
+
+        if (fAngle < fHalfAngle)
+        {
+            Debug.DrawLine(vPos, vTargetPos, Color.green);
+            return true;
+        }
+        Debug.DrawLine(vPos, vTargetPos, Color.gray);
+        return false;
+    }
+
+    public bool RaycastWall()
+    {
+        RaycastHit raycastHit;
+        if(Physics.Raycast(transform.position, transform.forward, out raycastHit))
+        {
+            if (raycastHit.transform.tag == "Wall")
+            {
+                Debug.Log("RaycastWall:" + raycastHit.transform.gameObject.name);
+                return true;
+            }
+        }
         return false;
     }
 
