@@ -40,8 +40,6 @@ public class AIController : Controller
             case E_AI_STATE.TRACKING:
                 if (m_objTarget)
                     TrackingProcess(m_objTarget);
-                else
-                    SetAISate(E_AI_STATE.RETURN);
                 break;
             case E_AI_STATE.ATTACK:
 
@@ -68,15 +66,12 @@ public class AIController : Controller
         {
             foreach (Collider collider in colliders)
             {
-                if (collider.tag == "Player")
+                if (ArcColCheck(collider, 120, transform.forward))
                 {
-                    if (ArcColCheck(collider, 120, transform.forward))
+                    if (RaycastWall(collider) == false)
                     {
-                        if (RaycastWall() == false)
-                        {
-                            m_objTarget = collider.gameObject;
-                            return true;
-                        }
+                        m_objTarget = collider.gameObject;
+                        return true;
                     }
                 }
             }
@@ -112,10 +107,14 @@ public class AIController : Controller
         return false;
     }
 
-    public bool RaycastWall()
+    public bool RaycastWall(Collider collider)
     {
+        Vector3 vTargetPos = collider.transform.position;
+        Vector3 vPos = this.transform.position;
+
+        Vector3 vTargetToDist = vTargetPos - vPos;
         RaycastHit raycastHit;
-        if(Physics.Raycast(transform.position, transform.forward, out raycastHit))
+        if(Physics.Raycast(transform.position, vTargetToDist.normalized, out raycastHit, m_fSite))
         {
             if (raycastHit.transform.tag == "Wall")
             {
