@@ -15,19 +15,22 @@ public class PlayerController : Controller
     {
         if (Input.GetKey(KeyCode.UpArrow))
         {
-            MoveProcess(Vector3.forward, m_cDynmaic.Speed);
+            MoveProcess(Vector3.forward, m_cPlayer.Speed);
         }
         if (Input.GetKey(KeyCode.DownArrow))
         {
-            MoveProcess(Vector3.back, m_cDynmaic.Speed);
+            MoveProcess(Vector3.back, m_cPlayer.Speed);
         }
         if (Input.GetKey(KeyCode.RightArrow))
         {
-           RotateProcess(Vector3.up, m_cDynmaic.AngleSpeed);
+           RotateProcess(Vector3.up, m_cPlayer.AngleSpeed);
         }
         if (Input.GetKey(KeyCode.LeftArrow))
         {
-           RotateProcess(Vector3.down, m_cDynmaic.AngleSpeed);
+           RotateProcess(Vector3.down, m_cPlayer.AngleSpeed);
         }
+
+        if (Input.GetKeyDown(KeyCode.Space))
+            m_cPlayer.Shot();
     }
 }

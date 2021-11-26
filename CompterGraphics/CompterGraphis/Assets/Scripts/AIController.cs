@@ -10,7 +10,7 @@ public class AIController : Controller
 
     public void SetAISate(E_AI_STATE state)
     {
-        Debug.Log("SetAISate:"+state);
+        //Debug.Log("SetAISate:"+state);
         switch (state)
         {
             case E_AI_STATE.FIND:
@@ -129,7 +129,7 @@ public class AIController : Controller
     {
         if (Vector3.Distance(objTarget.transform.position, this.transform.position) > Time.deltaTime)
         {
-            MoveProcess(Vector3.forward, m_cDynmaic.Speed);
+            MoveProcess(Vector3.forward, m_cPlayer.Speed);
             return true;
         }
         return false;
