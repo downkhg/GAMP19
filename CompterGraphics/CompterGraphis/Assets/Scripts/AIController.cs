@@ -10,7 +10,7 @@ public class AIController : Controller
 
     public void SetAISate(E_AI_STATE state)
     {
-        //Debug.Log("SetAISate:"+state);
+        Debug.Log("SetAISate:"+state);
         switch (state)
         {
             case E_AI_STATE.FIND:
@@ -21,7 +21,7 @@ public class AIController : Controller
                     transform.LookAt(m_objTarget.transform.parent);
                 break;
             case E_AI_STATE.ATTACK:
-
+                StartCoroutine(ProcessAttack());
                 break;
             case E_AI_STATE.RETURN:
                 transform.LookAt(m_objResponPoint.transform);
@@ -39,13 +39,21 @@ public class AIController : Controller
                 break;
             case E_AI_STATE.TRACKING:
                 if (m_objTarget)
-                    TrackingProcess(m_objTarget);
+                {
+                    if (!TrackingProcess(m_objTarget.transform.parent.gameObject))
+                        SetAISate(E_AI_STATE.ATTACK);
+                }
+                else
+                    SetAISate(E_AI_STATE.RETURN);
                 break;
             case E_AI_STATE.ATTACK:
-
+                if (m_objTarget == null)
+                {
+                    SetAISate(E_AI_STATE.FIND);
+                }
                 break;
             case E_AI_STATE.RETURN:
-                if (TrackingProcess(m_objResponPoint) == false)
+                if (MoveProcess(m_objResponPoint) == false)
                     SetAISate(E_AI_STATE.FIND);
                 break;
         }
@@ -56,6 +64,20 @@ public class AIController : Controller
     GameObject m_objTarget;
     [SerializeField]
     float m_fSite = 3;
+    [SerializeField]
+    float m_fShotDist = 5;
+    [SerializeField]
+    float m_fShotCoolTime = 1;
+
+    IEnumerator ProcessAttack()
+    {
+        do
+        {
+            yield return new WaitForSeconds(m_fShotCoolTime);
+            m_cPlayer.Shot();
+
+        } while (m_eCurAIState == E_AI_STATE.ATTACK);
+    }
 
     public bool FindProcess()
     {
@@ -125,9 +147,24 @@ public class AIController : Controller
         return false;
     }
 
+    public bool MoveProcess(GameObject objTarget)
+    {
+        if (Vector3.Distance(objTarget.transform.position, this.transform.position) >= Time.deltaTime)
+        {
+            MoveProcess(Vector3.forward, m_cPlayer.Speed);
+            return true;
+        }
+        return false;
+    }
+
     public bool TrackingProcess(GameObject objTarget)
     {
-        if (Vector3.Distance(objTarget.transform.position, this.transform.position) > Time.deltaTime)
+        Vector3 vTargetPos = objTarget.transform.position;
+        Vector3 vPos = transform.position;
+        Vector3 vDist = vTargetPos - vPos;
+        float fDist = vDist.magnitude;
+
+        if (m_fShotDist >= fDist)
         {
             MoveProcess(Vector3.forward, m_cPlayer.Speed);
             return true;
@@ -138,13 +175,25 @@ public class AIController : Controller
     private void OnDrawGizmos()
     {
         Gizmos.DrawWireSphere(transform.position, m_fSite);
+
+        Gizmos.color = Color.red;
+        Gizmos.DrawWireSphere(transform.position, m_fShotDist);
     }
 
 
     private void FixedUpdate()
     {
+       
         if (FindProcess())
-            SetAISate(E_AI_STATE.TRACKING);
+        {
+            if (m_eCurAIState != E_AI_STATE.ATTACK)
+            {
+                SetAISate(E_AI_STATE.TRACKING);
+            }
+            else
+                transform.LookAt(m_objTarget.transform.parent);
+        }
+     
         //else
         //    SetAISate(E_AI_STATE.FIND);
     }
