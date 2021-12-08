@@ -78,10 +78,4 @@ public class ItemManager : MonoBehaviour
 		m_listItem.Add(new Item("MP_Potion", new Status(0,100)));
 		Debug.Log("ItemManager.InitItemData() 2");
 	}
-
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
 }

@@ -10,7 +10,7 @@ public class AIController : Controller
 
     public void SetAISate(E_AI_STATE state)
     {
-        Debug.Log("SetAISate:"+state);
+        //Debug.Log("SetAISate:"+state);
         switch (state)
         {
             case E_AI_STATE.FIND:

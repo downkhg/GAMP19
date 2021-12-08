@@ -10,6 +10,13 @@ public class Player : MonoBehaviour
     float m_fAngleSpeed = 1;
     [SerializeField]
     Gun m_cGun;
+    [SerializeField]
+    ItemIeventory m_cItemInventory;
+
+    public ItemIeventory GetItemIventory()
+    {
+        return m_cItemInventory;
+    }
 
     public Gun GetGun()
     {
@@ -31,6 +38,11 @@ public class Player : MonoBehaviour
     {
         get { return m_fAngleSpeed; }
         //set { m_fSpeed = value; }
+    }
+
+    private void Awake()
+    {
+        m_cItemInventory = GetComponent<ItemIeventory>();
     }
 
     // Start is called before the first frame update
@@ -68,5 +80,19 @@ public class Player : MonoBehaviour
         //}
     }
 
-  
+    //private void OnCollisionEnter(Collision collision)
+    //{
+    //    Debug.Log(this.gameObject.name + ".OnCollisionEnter:"+ collision.gameObject.name);
+    //    ItemObejct itemObejct = collision.gameObject.GetComponent<ItemObejct>();
+
+    //    if(itemObejct)
+    //    {
+    //        itemObejct.EatItem(m_cItemInventory);
+    //    }
+    //}
+
+    private void OnTriggerEnter(Collider other)
+    {
+        
+    }
 }
