@@ -69,12 +69,15 @@ public class AIController : Controller
     [SerializeField]
     float m_fShotCoolTime = 1;
 
+    public GameObject Target { get { return m_objTarget; } }
+    public float ShotDist { get { return m_fShotDist; } }
+
     IEnumerator ProcessAttack()
     {
         do
         {
             yield return new WaitForSeconds(m_fShotCoolTime);
-            m_cPlayer.Shot();
+            m_cPlayer.Shot(m_objTarget);
 
         } while (m_eCurAIState == E_AI_STATE.ATTACK);
     }

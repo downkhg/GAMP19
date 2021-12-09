@@ -9,12 +9,15 @@ public class Gun : MonoBehaviour
     [SerializeField]
     Transform m_transMozzle;
     [SerializeField]
-    float m_fShotPower = 300;
+    float m_fShotSpeeed = 1;
+    [SerializeField]
+    float m_fShotDist = 1;
 
-    public void Shot()
+    public void Shot(GameObject target)
     {
         GameObject objBullet = Instantiate(m_objBullet, m_transMozzle.position, Quaternion.identity);
-        Rigidbody rigidbody = objBullet.GetComponent<Rigidbody>();
-        rigidbody.AddForce(transform.forward * m_fShotPower);
+        Bullet bullet = objBullet.GetComponent<Bullet>();
+        bullet.Initialize(m_fShotSpeeed, m_fShotDist);
+        objBullet.transform.LookAt(target.transform);
     }
 }

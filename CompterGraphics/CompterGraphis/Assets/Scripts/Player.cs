@@ -23,9 +23,9 @@ public class Player : MonoBehaviour
         return m_cGun;
     }
 
-    public void Shot()
+    public void Shot(GameObject target = null)
     {
-        m_cGun.Shot();
+        m_cGun.Shot(target);
     }
 
     public float Speed

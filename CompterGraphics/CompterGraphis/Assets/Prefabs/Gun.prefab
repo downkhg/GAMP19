@@ -265,4 +265,5 @@ MonoBehaviour:
   m_objBullet: {fileID: 3730291041428803744, guid: 63f2e729b4895a0449e4f9abe9e41799,
     type: 3}
   m_transMozzle: {fileID: 3677192371293221225}
-  m_fShotPower: 300
+  m_fShotSpeeed: 1
+  m_fShotDist: 3
