@@ -18,7 +18,8 @@ public class ItemObejct : MonoBehaviour
     public void EatItem(ItemIeventory itemIeventory)
     {
         itemIeventory.SetIevntory(m_cItem);
-        Destroy(this.gameObject);
+        gameObject.SetActive(false);
+        //Destroy(this.gameObject);
     }
 
     private void OnCollisionEnter(Collision collision)

@@ -18,6 +18,6 @@ public class Gun : MonoBehaviour
         GameObject objBullet = Instantiate(m_objBullet, m_transMozzle.position, Quaternion.identity);
         Bullet bullet = objBullet.GetComponent<Bullet>();
         bullet.Initialize(m_fShotSpeeed, m_fShotDist);
-        objBullet.transform.LookAt(target.transform);
+        if(target) objBullet.transform.LookAt(target.transform);
     }
 }
