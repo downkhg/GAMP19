@@ -29,6 +29,19 @@ public class ItemIeventory : MonoBehaviour
             Debug.LogError("item list is not null !!!");
     }
 
+    public void TestIventory(int count)
+    {
+        ItemManager itemManager = GameManager.GetInstance().GetItemManager();
+
+        for(int c = 0; c < count; c++)
+        {
+            for(int i = 0;  i< (int)ItemManager.E_ITEM.MAX; i++)
+            {
+                SetIevntory(itemManager.GetItem(i));
+            }
+        }
+    }
+
     private void OnGUI()
     {
         int weight = 100, height = 20;
