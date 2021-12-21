@@ -5,9 +5,6 @@ using UnityEngine;
 public class GameManager : MonoBehaviour
 {
     [SerializeField]
-    GUIItemInventory m_guiItemInventory;
-
-    [SerializeField]
     List<ItemObejct> m_listItemObejct;
     [SerializeField]
     ItemManager m_cItemManager;
@@ -17,14 +14,22 @@ public class GameManager : MonoBehaviour
     //싱글톤패턴: 엄격한 싱글톤이라 말할수 없지만, 접근의 용이함을 활용하기위해 싱글톤화함.
     //디자인패턴은 무조건 엄격하게 적용할것이 아니라 사용성에 맞게 적절히 방법이 변경되는 경우가 많음.
 
-    [SerializeField]
-    Dictionary<string, PlayerController> m_dicPlayerController;
+    //[SerializeField] //딕셔너리는 인스펙터를 사용할수없다.
+    Dictionary<string, PlayerController> m_dicPlayerController = new Dictionary<string,PlayerController>();
     [SerializeField]
     string m_strID;
 
     public PlayerController GetPlayerContorl(string id)
     {
         return m_dicPlayerController[id];
+    }
+
+
+    public ItemIeventory GetPlayerItemIventory(string id)
+    {
+        Controller controller = GetPlayerContorl(m_strID);
+        ItemIeventory itemIeventory = controller.GetComponent<ItemIeventory>();
+        return itemIeventory;
     }
 
     static GameManager m_cInstance;
@@ -37,6 +42,29 @@ public class GameManager : MonoBehaviour
     private void Awake()
     {
         m_cInstance = this;
+    }
+
+    [SerializeField]
+    GUIItemInventory m_guiItemInventory;
+    [SerializeField]
+    bool m_bPopup;
+    [SerializeField]
+    GameObject m_objPopupLayer;
+
+    public void ShowPopupLayer()
+    {
+        Time.timeScale = 0;
+        m_objPopupLayer.SetActive(true);
+        m_guiItemInventory.gameObject.SetActive(true);
+        m_bPopup = true;
+    }
+
+    public void ClosePopupLayer()
+    {
+        Time.timeScale = 1;
+        m_objPopupLayer.SetActive(false);
+        m_guiItemInventory.gameObject.SetActive(false);
+        m_bPopup = false;
     }
 
     public enum E_GUI_STATE { NONE = -1, TITLE, THEEND, GAMEOVER , PLAY }
@@ -87,6 +115,13 @@ public class GameManager : MonoBehaviour
             case E_GUI_STATE.THEEND:
                 break;
             case E_GUI_STATE.PLAY:
+                if(Input.GetKeyDown(KeyCode.I))
+                {
+                    if (m_bPopup)
+                        ClosePopupLayer();
+                    else
+                        ShowPopupLayer();
+                }
                 break;
         }
     }
@@ -98,10 +133,22 @@ public class GameManager : MonoBehaviour
 
     public void EventShowMeTheItem()
     {
-        Controller controller = GetPlayerContorl(m_strID);
-        Player player = controller.Player;
-        ItemIeventory itemIeventory = player.GetComponent<ItemIeventory>();
-        
+        ItemIeventory itemIeventory = GetPlayerItemIventory(m_strID);
+        itemIeventory.TestIventory(10);
+    }
+
+    public bool EventCreatePlayer(string id)
+    {
+        GameObject prefabPlayer = Resources.Load("Prefabs/PlayerController") as GameObject;
+
+        if(prefabPlayer)
+        {
+            GameObject objPlayer = Instantiate(prefabPlayer);
+            objPlayer.name = id;
+            m_dicPlayerController.Add(id, objPlayer.GetComponent<PlayerController>());
+            return true;
+        }
+        return false;
     }
 
     // Start is called before the first frame update
@@ -109,11 +156,15 @@ public class GameManager : MonoBehaviour
     {
         Debug.Log("GameManager.Start() 1");
         m_cItemManager.InitItemData();
+        EventCreatePlayer("player");
         for(int i = 0;  i< m_listItemObejct.Count; i++)
         {
             m_listItemObejct[i].Item = m_cItemManager.GetItem(0);
         }
         SetGUIScene(m_eCurState);
+        ItemIeventory itemIeventory = GetPlayerItemIventory(m_strID);
+        EventShowMeTheItem();
+        m_guiItemInventory.SetItems(itemIeventory);
         Debug.Log("GameManager.Start() 2");
     }
 

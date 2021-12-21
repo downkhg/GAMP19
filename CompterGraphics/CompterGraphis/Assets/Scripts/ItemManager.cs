@@ -45,18 +45,26 @@ public struct Status
 public class Item
 {
 	[SerializeField]
+	string m_strItemInfo;
+	[SerializeField]
 	string m_strName;
 	[SerializeField]
 	Status m_sStatus;
+	[SerializeField]
+	Sprite m_spriteImage;
 
-	public Item(string name, Status status)
+	public Item(string name, Status status, string itemInfo, string imgName)
     {
 		m_sStatus = status;
 		m_strName = name;
+		m_strItemInfo = itemInfo;
+		m_spriteImage = Resources.Load<Sprite>("Sprite/" + imgName);
     }
 
     public string Name { set { m_strName = value; } get { return m_strName; } }
 	public Status Status { set { m_sStatus = value; } get { return m_sStatus; } }
+	public string ItemInfo { set { m_strItemInfo = value; } get { return m_strItemInfo; } }
+	public Sprite Sprite { set { m_spriteImage = value; } get { return m_spriteImage; } }
 }
 
 public class ItemManager : MonoBehaviour
@@ -74,8 +82,8 @@ public class ItemManager : MonoBehaviour
     public void InitItemData()
     {
 		Debug.Log("ItemManager.InitItemData() 1");
-		m_listItem.Add( new Item("HP_Potion", new Status(100)));
-		m_listItem.Add(new Item("MP_Potion", new Status(0,100)));
+		m_listItem.Add( new Item("HP_Potion", new Status(100), "HP Recovery.", "HealingPotion"));
+		m_listItem.Add(new Item("MP_Potion", new Status(0,100), "MP Recovery.", "ManaPotion"));
 		Debug.Log("ItemManager.InitItemData() 2");
 	}
 }
