@@ -39,13 +39,21 @@ public struct Status
 		sResult.nInt = status.nInt - op.nInt;
 		return sResult;
 	}
+    //public string ToStatusText()
+    //{
+    //	return string.Format("HP:{0}\nMP:{1}\nStr:{2}\nDef:{3}\nInt:{4}\n", nHP, nMP, nStr, nDef, nInt);
+    //}
+    public override string ToString()
+    {
+        return string.Format("HP:{0}\nMP:{1}\nStr:{2}\nDef:{3}\nInt:{4}\n", nHP, nMP, nStr, nDef, nInt);
+    }
 };
 
 [System.Serializable]
 public class Item
 {
 	[SerializeField]
-	string m_strItemInfo;
+	string m_strInfo;
 	[SerializeField]
 	string m_strName;
 	[SerializeField]
@@ -57,13 +65,13 @@ public class Item
     {
 		m_sStatus = status;
 		m_strName = name;
-		m_strItemInfo = itemInfo;
+		m_strInfo = itemInfo;
 		m_spriteImage = Resources.Load<Sprite>("Sprite/" + imgName);
     }
 
     public string Name { set { m_strName = value; } get { return m_strName; } }
 	public Status Status { set { m_sStatus = value; } get { return m_sStatus; } }
-	public string ItemInfo { set { m_strItemInfo = value; } get { return m_strItemInfo; } }
+	public string Info { set { m_strInfo = value; } get { return m_strInfo; } }
 	public Sprite Sprite { set { m_spriteImage = value; } get { return m_spriteImage; } }
 }
 

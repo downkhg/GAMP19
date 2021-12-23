@@ -6,26 +6,23 @@ using UnityEngine.UI;
 public class GUIItemInfo : MonoBehaviour
 {
     [SerializeField]
-    Image m_imgItem;
+    Image m_imgSprite;
     [SerializeField]
     Text m_textStatus;
     [SerializeField]
-    Text m_textComment;
+    Text m_textInfo;
 
     public void Initialize(Item item)
     {
-         
-    }
-
-    // Start is called before the first frame update
-    void Start()
-    {
-        
+        m_textStatus.text = item.Status.ToString();// ToStatusText() ;
+        m_textInfo.text = item.Info;
+        m_imgSprite.sprite = item.Sprite;
     }
 
     // Update is called once per frame
-    void Update()
-    {
-        
-    }
+    //void Update()
+    //{
+    //    Item item = GameManager.GetInstance().GetItemManager().GetItem(0);
+    //    Initialize(item);
+    //}
 }

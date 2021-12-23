@@ -9,6 +9,19 @@ public class GUIItemInventory : MonoBehaviour
     List<GUIItemButton> m_listGuiItemButton;
     [SerializeField]
     GridLayoutGroup m_gridLayoutGroup;
+    [SerializeField]
+    GUIItemInfo m_guiItemInfo;
+
+    public void ShowItemInfo(Item item)
+    {
+        m_guiItemInfo.Initialize(item);
+        m_guiItemInfo.gameObject.SetActive(true);
+    }
+
+    public void CloseItemInfo()
+    {
+        m_guiItemInfo.gameObject.SetActive(false);
+    }
 
     public void Initialize(int count)
     {
@@ -24,6 +37,9 @@ public class GUIItemInventory : MonoBehaviour
         {
             GameObject objButton = Instantiate(prefabButton, m_gridLayoutGroup.transform);
             GUIItemButton guiItemButton = objButton.GetComponent<GUIItemButton>();
+            Button button = objButton.GetComponent<Button>();
+            int idx = i;
+            button.onClick.AddListener(() => ShowItemInfo(items[idx]));
             guiItemButton.Initialize(items[i]);
             m_listGuiItemButton.Add(guiItemButton);
             //objButton.transform.SetParent(m_gridLayoutGroup.gameObject.transform);
