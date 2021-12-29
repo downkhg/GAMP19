@@ -5,6 +5,8 @@ using UnityEngine;
 public class Player : MonoBehaviour
 {
     [SerializeField]
+    Status m_sStatus;
+    [SerializeField]
     float m_fSpeed = 1;
     [SerializeField]
     float m_fAngleSpeed = 1;
@@ -12,6 +14,13 @@ public class Player : MonoBehaviour
     Gun m_cGun;
     [SerializeField]
     ItemIeventory m_cItemInventory;
+
+    public Status Status { set { m_sStatus = value; } get { return m_sStatus; } }
+
+    public void Attack(Player taget)
+    {
+        taget.m_sStatus.nHP -= m_sStatus.nStr - m_sStatus.nDef;
+    }
 
     public ItemIeventory GetItemIventory()
     {
@@ -25,7 +34,7 @@ public class Player : MonoBehaviour
 
     public void Shot(GameObject target = null)
     {
-        m_cGun.Shot(target);
+        m_cGun.Shot(this,target);
     }
 
     public float Speed
@@ -78,6 +87,14 @@ public class Player : MonoBehaviour
         //{
         //    transform.Rotate(Vector3.down);
         //}
+    }
+    [SerializeField]
+    float m_nGUIIdx = 0;
+    private void OnGUI()
+    {
+        float w = 100;
+        float h = 50;
+        GUI.Box(new Rect(0, h * m_nGUIIdx, w, h), m_sStatus.ToString());
     }
 
     //private void OnCollisionEnter(Collision collision)

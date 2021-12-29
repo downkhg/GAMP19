@@ -10,6 +10,8 @@ public class Bullet : MonoBehaviour
     float m_fDestroyTime;
     [SerializeField]
     bool m_bMove = false;
+    [SerializeField]
+    Player m_cMaster;
 
     IEnumerator ProcessTimmer(float time)
     {
@@ -19,9 +21,11 @@ public class Bullet : MonoBehaviour
         m_bMove = false;
     }
 
-    public void Initialize(float speed, float dist)
+    public void Initialize(Player master, float speed, float dist)
     {
+        m_cMaster = master;
         m_fDestroyTime = dist / speed;
+        gameObject.tag = m_cMaster.gameObject.tag;
         StartCoroutine(ProcessTimmer(m_fDestroyTime));
         //Destroy(this.gameObject);
     }
@@ -33,6 +37,15 @@ public class Bullet : MonoBehaviour
         {
             //transform.position += Vector3.forward * m_fSpeed * Time.deltaTime;
             transform.Translate(Vector3.forward * m_fSpeed * Time.deltaTime);
+        }
+    }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        if(other.gameObject.tag != this.gameObject.tag)
+        {
+            Player target = other.gameObject.GetComponent<Player>();
+            m_cMaster.Attack(target);
         }
     }
 }

@@ -3,14 +3,14 @@
   <Class Name="ItemIeventory">
     <Position X="12.5" Y="2.75" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAAAAAAAAAAAAUAAAAgAgAAAAAAABAAAAACAAAAAAAA=</HashCode>
+      <HashCode>AAAAAQAAAAAAAUAAAAgAgAAAAAAABAAAAAAAAAAAAAA=</HashCode>
       <FileName>Assets\Scripts\ItemIeventory.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="Item">
     <Position X="6.5" Y="2.75" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AABAAAAEAAAAAAAAAAAAAAQAAAAAAAAAAAAAAAAAQAA=</HashCode>
+      <HashCode>AQBAAAAEAAAAAAAAAAAAAAQBAAAAAAAQAAAAAEAAQAA=</HashCode>
       <FileName>Assets\Scripts\ItemManager.cs</FileName>
     </TypeIdentifier>
   </Class>
@@ -45,21 +45,21 @@
   <Class Name="Player">
     <Position X="10.75" Y="2.75" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAQAAAAAACBAAAgAAAAAEAABAgAIAAAAQEEgAAAAAEA=</HashCode>
+      <HashCode>AARAIAAEACBAAAgAAAAAEAABAoAIAAAAQEGgAAAAAEA=</HashCode>
       <FileName>Assets\Scripts\Player.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="GUIItemButton">
     <Position X="4.25" Y="2.75" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAQAAAAAACAAAQAAAAgAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <HashCode>AAAAAAAAAAAAAQAAAAgAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
       <FileName>Assets\Scripts\GUI\GUIItemButton.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Struct Name="Status">
-    <Position X="6.5" Y="5.5" Width="1.5" />
+    <Position X="8.75" Y="6.25" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAAAAAAAAAAAEAgAwAEAACAAAAAAAAAAAAAAAABAAAA=</HashCode>
+      <HashCode>AAAAAAAAAAAAEAgEwAEAACAAAAAAAAAAAAAAAABAAAA=</HashCode>
       <FileName>Assets\Scripts\ItemManager.cs</FileName>
     </TypeIdentifier>
   </Struct>

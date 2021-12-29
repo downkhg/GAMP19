@@ -8,6 +8,8 @@ public class GameManager : MonoBehaviour
     List<ItemObejct> m_listItemObejct;
     [SerializeField]
     ItemManager m_cItemManager;
+    [SerializeField]
+    Transform m_transResponPlayer;
 
     public ItemManager GetItemManager() { return m_cItemManager; }
     public List<ItemObejct> GetItemObejcts() { return m_listItemObejct; }
@@ -143,7 +145,7 @@ public class GameManager : MonoBehaviour
 
         if(prefabPlayer)
         {
-            GameObject objPlayer = Instantiate(prefabPlayer);
+            GameObject objPlayer = Instantiate(prefabPlayer, m_transResponPlayer.transform.position, Quaternion.identity);
             objPlayer.name = id;
             m_dicPlayerController.Add(id, objPlayer.GetComponent<PlayerController>());
             return true;

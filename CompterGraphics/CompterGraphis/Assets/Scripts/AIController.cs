@@ -10,15 +10,20 @@ public class AIController : Controller
 
     public void SetAISate(E_AI_STATE state)
     {
-        //Debug.Log("SetAISate:"+state);
+        if (m_eCurAIState == state) return;
+        Debug.Log("SetAISate:"+state);
         switch (state)
         {
             case E_AI_STATE.FIND:
                 m_objTarget = null;
                 break;
             case E_AI_STATE.TRACKING:
-                if(m_objTarget.transform.parent)
-                    transform.LookAt(m_objTarget.transform.parent);
+                if (m_objTarget)
+                {
+                    Vector3 vLookPos = m_objTarget.transform.position;
+                    vLookPos.y = 0;
+                    transform.LookAt(vLookPos);
+                }
                 break;
             case E_AI_STATE.ATTACK:
                 StartCoroutine(ProcessAttack());
@@ -91,12 +96,15 @@ public class AIController : Controller
         {
             foreach (Collider collider in colliders)
             {
-                if (ArcColCheck(collider, 120, transform.forward))
+                if(collider.gameObject.name != m_cPlayer.gameObject.name && collider.transform.parent != null)
                 {
-                    if (RaycastWall(collider) == false)
+                    if (ArcColCheck(collider, 120, transform.forward))
                     {
-                        m_objTarget = collider.gameObject;
-                        return true;
+                        if (RaycastWall(collider) == false)
+                        {
+                            m_objTarget = collider.gameObject;
+                            return true;
+                        }
                     }
                 }
             }
@@ -152,7 +160,10 @@ public class AIController : Controller
 
     public bool MoveProcess(GameObject objTarget)
     {
-        if (Vector3.Distance(objTarget.transform.position, this.transform.position) >= Time.deltaTime)
+        float fDist = Vector3.Distance(objTarget.transform.position, this.transform.position);
+        if(this.transform.position.y > 0)
+            Debug.Log("Dist:"+fDist);
+        if (fDist >= Time.deltaTime)
         {
             MoveProcess(Vector3.forward, m_cPlayer.Speed);
             return true;

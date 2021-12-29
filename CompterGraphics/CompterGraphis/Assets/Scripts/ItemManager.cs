@@ -61,18 +61,18 @@ public class Item
 	[SerializeField]
 	Sprite m_spriteImage;
 
-	public Item(string name, Status status, string itemInfo, string imgName)
-    {
-		m_sStatus = status;
-		m_strName = name;
-		m_strInfo = itemInfo;
-		m_spriteImage = Resources.Load<Sprite>("Sprite/" + imgName);
-    }
-
     public string Name { set { m_strName = value; } get { return m_strName; } }
 	public Status Status { set { m_sStatus = value; } get { return m_sStatus; } }
 	public string Info { set { m_strInfo = value; } get { return m_strInfo; } }
 	public Sprite Sprite { set { m_spriteImage = value; } get { return m_spriteImage; } }
+
+	public Item(string name, Status status, string itemInfo, string imgName)
+	{
+		m_sStatus = status;
+		m_strName = name;
+		m_strInfo = itemInfo;
+		m_spriteImage = Resources.Load<Sprite>("Sprite/" + imgName);
+	}
 }
 
 public class ItemManager : MonoBehaviour

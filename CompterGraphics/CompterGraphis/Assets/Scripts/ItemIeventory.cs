@@ -42,16 +42,16 @@ public class ItemIeventory : MonoBehaviour
         }
     }
 
-    private void OnGUI()
-    {
-        int weight = 100, height = 20;
-        int x = 0, y = 0;
+    //private void OnGUI()
+    //{
+    //    int weight = 100, height = 20;
+    //    int x = 0, y = 0;
 
-        for(int i = 0; i < m_listItem.Count; i++)
-        {
-            y = height * i;
-            Rect rect = new Rect(x, y, weight, height);
-            GUI.Box(rect, m_listItem[i].Name);
-        }
-    }
+    //    for(int i = 0; i < m_listItem.Count; i++)
+    //    {
+    //        y = height * i;
+    //        Rect rect = new Rect(x, y, weight, height);
+    //        GUI.Box(rect, m_listItem[i].Name);
+    //    }
+    //}
 }
