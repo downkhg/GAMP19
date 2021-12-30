@@ -11,6 +11,9 @@ public class GameManager : MonoBehaviour
     [SerializeField]
     Transform m_transResponPlayer;
 
+    [SerializeField]
+    Camera m_cMainCamera;
+
     public ItemManager GetItemManager() { return m_cItemManager; }
     public List<ItemObejct> GetItemObejcts() { return m_listItemObejct; }
     //싱글톤패턴: 엄격한 싱글톤이라 말할수 없지만, 접근의 용이함을 활용하기위해 싱글톤화함.
@@ -117,16 +120,26 @@ public class GameManager : MonoBehaviour
             case E_GUI_STATE.THEEND:
                 break;
             case E_GUI_STATE.PLAY:
-                if(Input.GetKeyDown(KeyCode.I))
                 {
-                    if (m_bPopup)
-                        ClosePopupLayer();
-                    else
-                        ShowPopupLayer();
+                    if (Input.GetKeyDown(KeyCode.I))
+                    {
+                        if (m_bPopup)
+                            ClosePopupLayer();
+                        else
+                            ShowPopupLayer();
+                    }
+
+                    PlayerController playerController = GetPlayerContorl(m_strID);
+                    Vector3 vScreenPos = m_cMainCamera.WorldToScreenPoint(playerController.transform.position);
+                    m_guiPlayerInfo.transform.position = vScreenPos;
+                    m_guiPlayerInfo.UpdatePlayerInfo(playerController);
                 }
                 break;
         }
     }
+
+    [SerializeField]
+    GUIPlayerInfo m_guiPlayerInfo;
 
     public void EventGUIScenese(int idx)
     {

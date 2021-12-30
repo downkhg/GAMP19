@@ -7,6 +7,17 @@ public class Player : MonoBehaviour
     [SerializeField]
     Status m_sStatus;
     [SerializeField]
+    int m_nMaxHP;
+    [SerializeField]
+    int m_nMaxMP;
+    [SerializeField]
+    int m_nMaxExp;
+    [SerializeField]
+    int m_nExp;
+    [SerializeField]
+    int m_nLv;
+
+    [SerializeField]
     float m_fSpeed = 1;
     [SerializeField]
     float m_fAngleSpeed = 1;
@@ -14,8 +25,13 @@ public class Player : MonoBehaviour
     Gun m_cGun;
     [SerializeField]
     ItemIeventory m_cItemInventory;
-
+   
     public Status Status { set { m_sStatus = value; } get { return m_sStatus; } }
+    public int MaxHP { get { return m_nMaxHP; } }
+    public int MaxMP { get { return m_nMaxMP; } }
+    public int MaxExp { get { return m_nMaxExp; } }
+    public int Exp { get { return m_nExp; } }
+    public int Lv { get { return m_nLv; } }
 
     public void Attack(Player taget)
     {
