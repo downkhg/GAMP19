@@ -23,6 +23,33 @@ public class PlayerController : Controller
         return true;
     }
 
+
+    Vector3 vPos;
+    Vector3 vTargetPos;
+    public float fAngle;
+    void UpdateRotationTargetProcess(Vector3 vTargetPos)
+    {
+        vPos = transform.position;
+        Vector3 vToTarget = vTargetPos - vPos;
+        Vector3 vToTargetDir = vToTarget.normalized;
+        float fDist = vToTarget.magnitude;
+        Vector3 vForword = Vector3.forward;
+        //fAngle = Vector3.Dot(vForword, vToTarget) * Mathf.Rad2Deg;
+        fAngle = Vector3.Angle(vForword, vToTargetDir);
+        Vector3 vAsix = Vector3.Cross(vForword, vToTargetDir);
+        //if(vAsix.y > 0)
+        //    transform.localRotation = Quaternion.Euler(Vector3.up * fAngle);
+        //else
+        //    transform.localRotation = Quaternion.Euler(Vector3.down * fAngle);
+
+        transform.localRotation = Quaternion.Euler(vAsix * fAngle);
+        Debug.DrawLine(vPos, vPos+vForword * fDist, Color.blue);
+        Debug.DrawLine(vPos, vPos+ vToTargetDir * fDist, Color.cyan);
+        Debug.DrawLine(vPos, vPos + vAsix * fDist, Color.green);
+    }
+
+    public GameObject m_objTarget;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -32,6 +59,13 @@ public class PlayerController : Controller
     // Update is called once per frame
     void Update()
     {
+        if (m_objTarget)
+        {
+            vTargetPos = m_objTarget.transform.position;
+            UpdateRotationTargetProcess(vTargetPos);
+            //Debug.DrawLine(vPos, vTargetPos, Color.red);
+        }
+
         if (Input.GetKey(KeyCode.UpArrow))
         {
             MoveProcess(Vector3.forward, m_cPlayer.Speed);

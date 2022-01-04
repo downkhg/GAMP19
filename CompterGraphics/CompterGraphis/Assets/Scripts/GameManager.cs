@@ -14,6 +14,9 @@ public class GameManager : MonoBehaviour
     [SerializeField]
     Camera m_cMainCamera;
 
+
+    public Camera MainCamera { get => m_cMainCamera; set => m_cMainCamera = value; }
+
     public ItemManager GetItemManager() { return m_cItemManager; }
     public List<ItemObejct> GetItemObejcts() { return m_listItemObejct; }
     //싱글톤패턴: 엄격한 싱글톤이라 말할수 없지만, 접근의 용이함을 활용하기위해 싱글톤화함.
@@ -140,6 +143,7 @@ public class GameManager : MonoBehaviour
 
     [SerializeField]
     GUIPlayerInfo m_guiPlayerInfo;
+
 
     public void EventGUIScenese(int idx)
     {

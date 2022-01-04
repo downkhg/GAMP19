@@ -8,12 +8,13 @@ public class BillboardEffect : MonoBehaviour
     public Camera m_camera;
     void Start()
     {
-        
+        Debug.Log("BillboardEffect:"+gameObject.name);
     }
 
     // Update is called once per frame
     void Update()
     {
-        transform.LookAt(m_camera.transform);
+        if(m_camera)
+            transform.LookAt(m_camera.transform);
     }
 }

@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class AIController : Controller
 {
-    public enum E_AI_STATE{ FIND, TRACKING, ATTACK, RETURN  }
+    public enum E_AI_STATE{ FIND, TRACKING, ATTACK, RETURN, ROTATION  }
     [SerializeField]
     E_AI_STATE m_eCurAIState;
 
@@ -21,7 +21,7 @@ public class AIController : Controller
                 if (m_objTarget)
                 {
                     Vector3 vLookPos = m_objTarget.transform.position;
-                    vLookPos.y = 0;
+                    vLookPos.y = this.transform.position.y;
                     transform.LookAt(vLookPos);
                 }
                 break;
