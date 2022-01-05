@@ -37,15 +37,21 @@ public class PlayerController : Controller
         //fAngle = Vector3.Dot(vForword, vToTarget) * Mathf.Rad2Deg;
         fAngle = Vector3.Angle(vForword, vToTargetDir);
         Vector3 vAsix = Vector3.Cross(vForword, vToTargetDir);
+        Vector3 vAsixDir = vAsix;//.normalized;
         //if(vAsix.y > 0)
         //    transform.localRotation = Quaternion.Euler(Vector3.up * fAngle);
         //else
         //    transform.localRotation = Quaternion.Euler(Vector3.down * fAngle);
 
-        transform.localRotation = Quaternion.Euler(vAsix * fAngle);
+        transform.localRotation = Quaternion.Euler(vAsixDir * fAngle);
         Debug.DrawLine(vPos, vPos+vForword * fDist, Color.blue);
         Debug.DrawLine(vPos, vPos+ vToTargetDir * fDist, Color.cyan);
-        Debug.DrawLine(vPos, vPos + vAsix * fDist, Color.green);
+        Debug.DrawLine(vPos, vPos + vAsixDir * fDist, Color.green);
+    }
+
+    private void OnGUI()
+    {
+        GUI.Box(new Rect(100, 0, 100, 20), "Angle:" + fAngle);
     }
 
     public GameObject m_objTarget;
